@@ -1,0 +1,35 @@
+/* ─── LIGHT MODE: Glassmorphism ─── */
+:root[data-theme="light"] {
+  --bg-void:      #E8F7F2;
+  --bg-deep:      #F0FBF8;
+  --bg-surface:   #FFFFFF;
+  --bg-card:      rgba(255, 255, 255, 0.85);
+  --bg-card-hi:   rgba(255, 255, 255, 0.95);
+  --bg-glass:     rgba(255, 255, 255, 0.60);
+  --bg-overlay:   rgba(240, 251, 248, 0.92);
+
+  --neon-primary:  #006B52;
+  --neon-teal:     #008C72;
+  --neon-cyan:     #0099A8;
+  --neon-aqua:     #0077A8;
+  --neon-blue:     #0055CC;
+  --neon-dark:     #004A3C;
+
+  --shadow-sm:   0 1px 4px rgba(0, 80, 60, 0.08);
+  --shadow-md:   0 4px 16px rgba(0, 80, 60, 0.12), 0 1px 4px rgba(0, 80, 60, 0.06);
+  --shadow-lg:   0 8px 32px rgba(0, 80, 60, 0.15), 0 2px 8px rgba(0, 80, 60, 0.08);
+  --shadow-xl:   0 16px 48px rgba(0, 80, 60, 0.18), 0 4px 16px rgba(0, 80, 60, 0.1);
+  --shadow-glass: 0 8px 32px rgba(0, 80, 60, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+
+  --text-bright:   #03100D;
+  --text-primary:  #0A2019;
+  --text-secondary:#1F5A48;
+  --text-muted:    #5A8A7A;
+  --text-inverse:  #FFFFFF;
+
+  --border-void:   rgba(0, 107, 82, 0.05);
+  --border-subtle: rgba(0, 107, 82, 0.10);
+  --border-accent: rgba(0, 107, 82, 0.25);
+  --border-strong: rgba(0, 107, 82, 0.55);
+  --border-neon:   rgba(0, 107, 82, 0.80);
+}

@@ -1,0 +1,36 @@
+/* ─── DARK MODE: Neon-on-void ─── */
+:root[data-theme="dark"] {
+  --bg-void:      #020C09;
+  --bg-deep:      #03100D;
+  --bg-surface:   #071A14;
+  --bg-card:      #0A2019;
+  --bg-card-hi:   #0D2820;
+  --bg-glass:     rgba(10, 32, 25, 0.65);
+  --bg-overlay:   rgba(2, 12, 9, 0.92);
+
+  --neon-primary:  #00E8A8;
+  --neon-teal:     #00C896;
+  --neon-cyan:     #00F5D4;
+  --neon-aqua:     #00D4E8;
+  --neon-blue:     #0066FF;
+  --neon-dark:     #007A5E;
+
+  --glow-primary:  0 0 20px rgba(0, 232, 168, 0.35), 0 0 60px rgba(0, 232, 168, 0.12);
+  --glow-teal:     0 0 20px rgba(0, 200, 150, 0.3);
+  --glow-cyan:     0 0 30px rgba(0, 245, 212, 0.2);
+  --glow-blue:     0 0 20px rgba(0, 102, 255, 0.25);
+  --glow-card:     0 0 0 1px rgba(0, 232, 168, 0.08), 0 4px 24px rgba(0,0,0,0.5);
+  --glow-card-hover: 0 0 0 1px rgba(0, 232, 168, 0.2), 0 8px 40px rgba(0,0,0,0.7), 0 0 30px rgba(0, 232, 168, 0.12);
+
+  --text-bright:   #F0FBF5;
+  --text-primary:  #C8E8DC;
+  --text-secondary:#7AADA0;
+  --text-muted:    #3D6B60;
+  --text-inverse:  #020C09;
+
+  --border-void:   rgba(0, 232, 168, 0.04);
+  --border-subtle: rgba(0, 232, 168, 0.09);
+  --border-accent: rgba(0, 232, 168, 0.22);
+  --border-strong: rgba(0, 232, 168, 0.5);
+  --border-neon:   rgba(0, 232, 168, 0.8);
+}
