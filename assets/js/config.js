@@ -1,2 +1,6 @@
-// config.js
-// TODO: Implement config.js logic
+// config.js — Site configuration
+var SITE_CONFIG = {
+  name: 'Aaryan Gupta',
+  title: 'Technical Project Manager',
+  domain: 'aaaryangupta.com'
+};

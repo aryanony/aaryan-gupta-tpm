@@ -54,9 +54,16 @@ flatConfig.CRITICAL_CSS = criticalCss;
 
 // Template replacer
 function inject(template, data) {
-  return template.replace(/\\{\\{([^}]+)\\}\\}/g, (match, key) => {
-    return data[key.trim()] !== undefined ? data[key.trim()] : '';
-  });
+  var result = template;
+  for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+      var placeholder = '{{' + key + '}}';
+      while (result.indexOf(placeholder) !== -1) {
+        result = result.replace(placeholder, data[key]);
+      }
+    }
+  }
+  return result;
 }
 
 function copyRecursiveSync(src, dest) {
@@ -104,13 +111,17 @@ console.log('Copying assets...');
 copyRecursiveSync(path.join(__dirname, 'assets'), path.join(distDir, 'assets'));
 copyRecursiveSync(path.join(__dirname, 'data'), path.join(distDir, 'data'));
 
-const seoFiles = ['robots.txt', 'manifest.json', 'browserconfig.xml'];
+const seoFiles = ['robots.txt', 'manifest.json', 'browserconfig.xml', 'sitemap.xml'];
 seoFiles.forEach(file => {
   const src = path.join(__dirname, 'seo', file);
   if (fs.existsSync(src)) {
+    // Copy to root of dist
     fs.copyFileSync(src, path.join(distDir, file));
+    // Also copy to dist/seo/ for /seo/ path references
+    const seoDistDir = path.join(distDir, 'seo');
+    if (!fs.existsSync(seoDistDir)) fs.mkdirSync(seoDistDir, { recursive: true });
+    fs.copyFileSync(src, path.join(seoDistDir, file));
   }
 });
-fs.copyFileSync(path.join(__dirname, 'seo', 'sitemap.xml'), path.join(distDir, 'sitemap.xml'));
 
 console.log('Build completed!');
