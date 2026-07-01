@@ -3,30 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <title>Contact | {{SITE_TITLE}}</title>
+  <meta name="description" content="Get in touch with Aaryan Gupta. Book a free 30-minute strategy call to discuss your SaaS or HealthTech development coordination needs.">
   <link rel="stylesheet" href="/assets/css/dark.css">
   <link rel="stylesheet" href="/assets/css/light.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>{{CRITICAL_CSS}}</style>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 </head>
-<body>
+<body class="loading">
+  <!-- 2. Loader -->
+  <div id="ldr" class="loader">
+    <!-- Loader content injected by loader.js -->
+  </div>
+
+  <!-- 3. Custom cursor -->
+  <div class="cx" aria-hidden="true"></div>
+  <div class="ci" aria-hidden="true"></div>
+
+  <!-- 4. Sticky Nav -->
   <header class="nav-header">
     <div class="container nav-container">
       <a href="/" class="nav-logo">AG.</a>
       <nav class="nav-links">
-        <a href="/about.html">About</a>
-        <a href="/services.html">Services</a>
-        <a href="/work.html">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#services">Services</a>
+        <a href="/#work">Work</a>
+        <a href="/products.html">Products</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <svg width="20" height="20" aria-hidden="true"><use href="#ico-moon"/></svg>
+        </button>
+        <a href="/#contact" class="btn btn-primary btn-sm magnetic">Book a Call</a>
+      </div>
     </div>
   </header>
+
   <main class="container section">
-    <h1>Contact</h1>
-    <p>Content for Contact will go here.</p>
+    <div class="section-header" style="text-align:left; margin-bottom:var(--space-8);">
+      <h1 style="font-size:var(--text-4xl); margin-bottom:var(--space-2);">Get In Touch</h1>
+      <p class="section-tagline" style="color:var(--text-secondary); font-size:var(--text-lg);">Ready to ship something that works? Reach out for requirements scoping, local consulting, or remote PM engagements.</p>
+    </div>
+
+    <div class="contact-grid" style="display:grid; grid-template-columns:1fr 1.2fr; gap:var(--space-8);">
+      <div class="contact-info">
+        <h3 style="font-size:var(--text-xl); color:var(--text-bright); margin-bottom:var(--space-3);">Book a Free Consultation</h3>
+        <p style="color:var(--text-secondary); line-height:var(--leading-relaxed); margin-bottom:var(--space-6);">
+          Schedule a free 30-minute strategy call to analyze your current project bottlenecks and map out delivery milestones.
+        </p>
+        
+        <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-6);">
+          <a href="https://calendly.com/aaryanpm/30min" target="_blank" rel="noopener" class="btn btn-primary magnetic" style="text-align:center;">Book Free 30-Min Call</a>
+          <a href="https://wa.me/916205650368?text=Hi%20Aaryan%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="btn btn-ghost magnetic" style="text-align:center; border-color:#25D366; color:#25D366;">WhatsApp Me</a>
+          <button id="btn-copy-email" class="btn btn-ghost magnetic" style="text-align:center;">Copy Email Address</button>
+        </div>
+        
+        <div style="font-family:var(--font-mono); font-size:var(--text-sm); color:var(--text-muted); border-top:1px solid var(--border-subtle); padding-top:var(--space-4);">
+          <div>Email: aryanrajk63@gmail.com</div>
+          <div style="margin-top:4px;">Phone: +91 62056 50368</div>
+          <div style="margin-top:4px;">Locations: Jaipur / Ahmedabad / Remote</div>
+        </div>
+      </div>
+      
+      <form class="contact-form" id="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <div class="custom-select-wrapper">
+          <select name="service" style="display:none;">
+            <option value="tpm">Technical Project Management</option>
+            <option value="healthtech">Health-Tech Consulting</option>
+            <option value="ai">AI Automation</option>
+            <option value="saas">Micro-SaaS Software</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="custom-select-trigger" tabindex="0">
+            <span class="custom-select-value">Technical Project Management</span>
+            <i class="ph ph-caret-down custom-select-arrow"></i>
+          </div>
+          <div class="custom-select-options">
+            <div class="custom-option selected" data-value="tpm">Technical Project Management</div>
+            <div class="custom-option" data-value="healthtech">Health-Tech Consulting</div>
+            <div class="custom-option" data-value="ai">AI Automation</div>
+            <div class="custom-option" data-value="saas">Micro-SaaS Software</div>
+            <div class="custom-option" data-value="other">Other</div>
+          </div>
+        </div>
+        <textarea name="message" placeholder="Describe your project, deadlines, and bottlenecks..." rows="5" required></textarea>
+        <button type="submit" class="btn btn-primary magnetic">Send Message</button>
+      </form>
+    </div>
   </main>
+
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>{{PERSON_NAME}}</h3>
+        <p>{{PERSON_TITLE}}</p>
+      </div>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <a href="{{SOCIAL_LINKEDIN}}">LinkedIn</a>
+        <a href="{{SOCIAL_GITHUB}}">GitHub</a>
+        <a href="{{SOCIAL_TWITTER}}">Twitter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+      <div class="footer-col">
+        <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/cursor.js" defer></script>
+  <script src="/assets/js/loader.js" defer></script>
+  <script src="/assets/js/scroll.js" defer></script>
+  <script src="/assets/js/animations.js" defer></script>
+  <script src="/assets/js/tilt.js" defer></script>
+  <script src="/assets/js/magnetic.js" defer></script>
+  <script src="/assets/js/form.js" defer></script>
 </body>
 </html>

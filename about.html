@@ -2,31 +2,103 @@
 <html lang="{{SITE_LANGUAGE}}">
 <head>
   <meta charset="UTF-8">
-  <title>About | {{SITE_TITLE}}</title>
+  <title>About Me | {{SITE_TITLE}}</title>
+  <meta name="description" content="Learn more about Aaryan Gupta (Aryan Raj), developer-turned-PM with an MCA and 3+ years experience managing remote engineering teams.">
   <link rel="stylesheet" href="/assets/css/dark.css">
   <link rel="stylesheet" href="/assets/css/light.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>{{CRITICAL_CSS}}</style>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 </head>
-<body>
+<body class="loading">
+  <!-- 2. Loader -->
+  <div id="ldr" class="loader">
+    <!-- Loader content injected by loader.js -->
+  </div>
+
+  <!-- 3. Custom cursor -->
+  <div class="cx" aria-hidden="true"></div>
+  <div class="ci" aria-hidden="true"></div>
+
+  <!-- 4. Sticky Nav -->
   <header class="nav-header">
     <div class="container nav-container">
       <a href="/" class="nav-logo">AG.</a>
       <nav class="nav-links">
-        <a href="/about.html">About</a>
-        <a href="/services.html">Services</a>
-        <a href="/work.html">Work</a>
+        <a href="/#about" class="active">About</a>
+        <a href="/#services">Services</a>
+        <a href="/#work">Work</a>
+        <a href="/products.html">Products</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <svg width="20" height="20" aria-hidden="true"><use href="#ico-moon"/></svg>
+        </button>
+        <a href="/#contact" class="btn btn-primary btn-sm magnetic">Book a Call</a>
+      </div>
     </div>
   </header>
+
   <main class="container section">
-    <h1>About Me</h1>
-    <p>Content for About will go here.</p>
+    <div class="section-header" style="text-align:left; margin-bottom:var(--space-8);">
+      <h1 style="font-size:var(--text-4xl); margin-bottom:var(--space-2);">About Aaryan Gupta</h1>
+      <p class="section-tagline" style="color:var(--text-secondary); font-size:var(--text-lg);">Associate Project Manager & Full-Stack Tech Coordinator bridging engineering execution and business reality.</p>
+    </div>
+
+    <div class="about-grid" style="display:grid; grid-template-columns:1fr 1.5fr; gap:var(--space-8); margin-bottom:var(--space-8);">
+      <div class="about-image-wrapper">
+        <picture>
+          <source srcset="/assets/images/profile/aaryan-gupta-tpm.avif" type="image/avif">
+          <source srcset="/assets/images/profile/aaryan-gupta-tpm.webp" type="image/webp">
+          <img src="/assets/images/profile/aaryan-gupta-tpm.jpg" alt="Aaryan Gupta, Technical Project Manager" width="400" height="500" loading="lazy">
+        </picture>
+      </div>
+      <div class="about-content">
+        <h2>The PM Who Speaks Developer</h2>
+        <p>Hi, I'm Aaryan Gupta (Aryan Raj). I specialize in managing end-to-end delivery of complex SaaS systems, medical workflows, and AI integrations. With an MCA from AKTU (2025) and hands-on React/Node.js experience, I bridge the gap between clients and engineering teams.</p>
+        <p>I currently oversee client accounts at Oblinex Pvt. Ltd., managing releases across 70+ international markets (India, UK, US, UAE, Europe, SE Asia). I coordinate developer sprints, VPS provisioning, database migrations, and mobile app deployments, ensuring that projects ship on schedule with zero code bottlenecks.</p>
+        
+        <h3 style="margin-top:var(--space-6); margin-bottom:var(--space-2); color:var(--text-bright);">Education & Core Focus</h3>
+        <ul style="line-height:1.8; color:var(--text-secondary);">
+          <li><strong>Master of Computer Applications (MCA):</strong> Lloyd Institute of Engineering & Technology (AKTU) · 2023 - 2025. Focused on full-stack architecture, DevOps, API integration.</li>
+          <li><strong>Bachelor of Computer Applications (BCA):</strong> R.D & D.J College, Munger University · 2019 - 2023.</li>
+        </ul>
+      </div>
+    </div>
   </main>
+
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>{{PERSON_NAME}}</h3>
+        <p>{{PERSON_TITLE}}</p>
+      </div>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <a href="{{SOCIAL_LINKEDIN}}">LinkedIn</a>
+        <a href="{{SOCIAL_GITHUB}}">GitHub</a>
+        <a href="{{SOCIAL_TWITTER}}">Twitter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+      <div class="footer-col">
+        <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/cursor.js" defer></script>
+  <script src="/assets/js/loader.js" defer></script>
+  <script src="/assets/js/scroll.js" defer></script>
+  <script src="/assets/js/animations.js" defer></script>
+  <script src="/assets/js/tilt.js" defer></script>
+  <script src="/assets/js/magnetic.js" defer></script>
 </body>
 </html>

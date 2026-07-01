@@ -2,31 +2,150 @@
 <html lang="{{SITE_LANGUAGE}}">
 <head>
   <meta charset="UTF-8">
-  <title>Work | {{SITE_TITLE}}</title>
+  <title>Work & Projects | {{SITE_TITLE}}</title>
+  <meta name="description" content="View signature projects delivered by Aaryan Gupta including ProjectPort client platform and UiBrium open-source UI library.">
   <link rel="stylesheet" href="/assets/css/dark.css">
   <link rel="stylesheet" href="/assets/css/light.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>{{CRITICAL_CSS}}</style>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 </head>
-<body>
+<body class="loading">
+  <!-- 2. Loader -->
+  <div id="ldr" class="loader">
+    <!-- Loader content injected by loader.js -->
+  </div>
+
+  <!-- 3. Custom cursor -->
+  <div class="cx" aria-hidden="true"></div>
+  <div class="ci" aria-hidden="true"></div>
+
+  <!-- 4. Sticky Nav -->
   <header class="nav-header">
     <div class="container nav-container">
       <a href="/" class="nav-logo">AG.</a>
       <nav class="nav-links">
-        <a href="/about.html">About</a>
-        <a href="/services.html">Services</a>
-        <a href="/work.html">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#services">Services</a>
+        <a href="/#work" class="active">Work</a>
+        <a href="/products.html">Products</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <svg width="20" height="20" aria-hidden="true"><use href="#ico-moon"/></svg>
+        </button>
+        <a href="/#contact" class="btn btn-primary btn-sm magnetic">Book a Call</a>
+      </div>
     </div>
   </header>
+
   <main class="container section">
-    <h1>Work</h1>
-    <p>Content for Work will go here.</p>
+    <div class="section-header" style="text-align:left; margin-bottom:var(--space-8);">
+      <h1 style="font-size:var(--text-4xl); margin-bottom:var(--space-2);">Signature Projects</h1>
+      <p class="section-tagline" style="color:var(--text-secondary); font-size:var(--text-lg);">Demonstrating end-to-end full-stack coordination, architecture ownership, and open-source governance.</p>
+    </div>
+
+    <!-- Work grid -->
+    <div class="work-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:var(--space-6);">
+      <!-- ProjectPort -->
+      <div class="work-card tilt-card">
+        <div class="work-image" style="position:relative;">
+          <img src="/assets/images/projects/projectport-preview.webp" alt="ProjectPort" loading="lazy">
+          <span class="project-badge" style="position:absolute; top:12px; right:12px; background:var(--neon-primary); color:#000; font-size:0.7rem; font-weight:bold; padding:4px 8px; border-radius:4px; font-family:var(--font-mono);">LIVE PRODUCT</span>
+        </div>
+        <div class="work-content">
+          <div class="skill-chips" style="margin-bottom:var(--space-3);">
+            <span class="chip">React.js</span>
+            <span class="chip">Node.js</span>
+            <span class="chip">MongoDB</span>
+            <span class="chip">Express</span>
+          </div>
+          <h3>ProjectPort</h3>
+          <p>Full-stack client project automation platform. Solves a real agency workflow gap — automating onboarding, dynamic quotation, lead management, and real-time project tracking with role-based dashboards.</p>
+          <div class="work-links" style="display:flex; gap:var(--space-4); margin-top:auto;">
+            <a href="https://projectsport.vercel.app/" target="_blank" rel="noopener">View Live <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+            <a href="https://github.com/aryanony/ProjectPort" target="_blank" rel="noopener">GitHub <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- UiBrium -->
+      <div class="work-card tilt-card">
+        <div class="work-image" style="position:relative;">
+          <img src="/assets/images/projects/uibrium-preview.webp" alt="UiBrium" loading="lazy">
+          <span class="project-badge" style="position:absolute; top:12px; right:12px; background:var(--neon-primary); color:#000; font-size:0.7rem; font-weight:bold; padding:4px 8px; border-radius:4px; font-family:var(--font-mono);">NPM PUBLISHED</span>
+        </div>
+        <div class="work-content">
+          <div class="skill-chips" style="margin-bottom:var(--space-3);">
+            <span class="chip">React.js</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">Tailwind</span>
+            <span class="chip">Turborepo</span>
+          </div>
+          <h3>UiBrium</h3>
+          <p>Open-source React UI component library published on NPM. Production-ready components with accessible primitives, scalable theming, and animation systems. Full product lifecycle ownership — architecture through open-source governance.</p>
+          <div class="work-links" style="display:flex; gap:var(--space-4); margin-top:auto;">
+            <a href="https://uibrium.vercel.app/" target="_blank" rel="noopener">Live Docs <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+            <a href="https://www.npmjs.com/package/uibrium" target="_blank" rel="noopener">NPM <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+            <a href="https://github.com/aryanony/uibrium" target="_blank" rel="noopener">GitHub <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- AI Bot -->
+      <div class="work-card tilt-card">
+        <div class="work-image" style="position:relative; background:var(--bg-card); display:flex; align-items:center; justify-content:center; aspect-ratio:16/9; border-bottom:1px solid var(--border-subtle);">
+          <svg width="48" height="48" style="color:var(--neon-primary);"><use href="#ico-robot"/></svg>
+          <span class="project-badge" style="position:absolute; top:12px; right:12px; background:var(--neon-primary); color:#000; font-size:0.7rem; font-weight:bold; padding:4px 8px; border-radius:4px; font-family:var(--font-mono);">LIVE DEPLOYMENT</span>
+        </div>
+        <div class="work-content">
+          <div class="skill-chips" style="margin-bottom:var(--space-3);">
+            <span class="chip">Botpress</span>
+            <span class="chip">OpenAI API</span>
+            <span class="chip">LLM</span>
+          </div>
+          <h3>Aryanony AI Assistant</h3>
+          <p>Custom LLM-integrated conversational AI assistant for real-time information retrieval and task automation. Complete lifecycle ownership from prompt architecture design through live production deployment on client infrastructure.</p>
+          <div class="work-links" style="display:flex; gap:var(--space-4); margin-top:auto;">
+            <a href="https://aryanony.github.io/portfolio" target="_blank" rel="noopener">View Demo <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
+
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>{{PERSON_NAME}}</h3>
+        <p>{{PERSON_TITLE}}</p>
+      </div>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <a href="{{SOCIAL_LINKEDIN}}">LinkedIn</a>
+        <a href="{{SOCIAL_GITHUB}}">GitHub</a>
+        <a href="{{SOCIAL_TWITTER}}">Twitter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+      <div class="footer-col">
+        <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/cursor.js" defer></script>
+  <script src="/assets/js/loader.js" defer></script>
+  <script src="/assets/js/scroll.js" defer></script>
+  <script src="/assets/js/animations.js" defer></script>
+  <script src="/assets/js/tilt.js" defer></script>
+  <script src="/assets/js/magnetic.js" defer></script>
 </body>
 </html>

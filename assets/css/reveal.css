@@ -1,0 +1,868 @@
+/* ─── PREMIUM GEOMETRIC HUD & PROGRESSIVE CONSOLE SYSTEM ─── */
+
+/* 1. Universal Spacing, Margin & Padding Consistency */
+.section {
+  padding-top: clamp(40px, 6vw, 70px) !important;
+  padding-bottom: clamp(40px, 6vw, 70px) !important;
+  margin: 0 !important;
+  position: relative;
+}
+
+.section + .section {
+  padding-top: 0 !important;
+}
+
+/* 2. Dashboard Layouts & HUD Frames */
+.dash-container {
+  display: grid;
+  gap: var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-6);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.dash-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--neon-primary), var(--neon-cyan), transparent);
+}
+
+/* Cyberpunk brackets decorator */
+.dash-container::after {
+  content: '[ SYSTEM: ONLINE ]';
+  position: absolute;
+  bottom: 8px;
+  right: 15px;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+/* 3. About Section HUD Tabs */
+.about-tab-group {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: var(--space-2);
+}
+
+.about-tab-btn {
+  position: relative;
+  padding: 12px 24px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.about-tab-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--neon-primary);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.about-tab-btn:hover {
+  border-color: var(--neon-primary);
+  color: var(--text-bright);
+}
+
+.about-tab-btn.active {
+  border-color: var(--neon-primary);
+  color: var(--neon-primary);
+  background: rgba(0, 232, 168, 0.05);
+  box-shadow: var(--glow-primary);
+}
+
+.about-tab-btn.active::before {
+  opacity: 1;
+}
+
+.about-pane {
+  display: none;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.about-pane.active {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* 4. Why Me HUD Console */
+.why-console {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-6);
+  min-height: auto;
+}
+
+.why-console-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.why-console-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-family: var(--font-mono);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  position: relative;
+}
+
+.why-console-btn::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  width: 6px;
+  height: 6px;
+  background: var(--text-muted);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  opacity: 0.3;
+  transition: all 0.3s;
+}
+
+.why-console-btn:hover {
+  border-color: var(--neon-primary);
+  color: var(--text-bright);
+}
+
+.why-console-btn.active {
+  border-color: var(--neon-primary);
+  color: var(--text-bright);
+  background: rgba(0, 232, 168, 0.08);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.15);
+}
+
+.why-console-btn.active::after {
+  background: var(--neon-primary);
+  opacity: 1;
+  transform: rotate(45deg);
+  box-shadow: var(--glow-primary);
+}
+
+.why-console-btn .num {
+  font-size: var(--text-lg);
+  font-weight: bold;
+  color: var(--neon-primary);
+}
+
+.why-console-display {
+  background: var(--bg-void);
+  border: 1px solid var(--border-accent);
+  padding: var(--space-6);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+  min-height: auto;
+}
+
+.why-display-pane {
+  display: none;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.why-display-pane.active {
+  display: block;
+}
+
+/* 5. Services Grid HUD */
+.services-hud-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.services-hud-cell {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  padding: var(--space-4) var(--space-2);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 110px;
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.services-hud-cell:hover {
+  border-color: var(--neon-primary);
+  background: rgba(0, 232, 168, 0.05);
+}
+
+.services-hud-cell.active {
+  border-color: var(--neon-primary);
+  background: rgba(0, 232, 168, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.15);
+}
+
+.services-hud-cell h4 {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.services-hud-cell.active h4 {
+  color: var(--text-bright);
+}
+
+.services-hud-display {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-accent);
+  padding: var(--space-6);
+  min-height: auto;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.services-pane {
+  display: none;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.services-pane.active {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 6. Projects Showcase Dashboard */
+.projects-showcase {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-6);
+  min-height: auto;
+}
+
+.projects-menu {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.project-menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+.project-menu-btn:hover {
+  border-color: var(--neon-primary);
+}
+
+.project-menu-btn.active {
+  border-color: var(--neon-primary);
+  background: rgba(0, 232, 168, 0.08);
+  box-shadow: 0 0 15px rgba(0, 255, 204, 0.10);
+}
+
+.project-menu-btn h4 {
+  color: var(--text-bright);
+  margin: 0;
+  font-size: 14px;
+}
+
+.project-menu-btn span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--neon-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-display-panel {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-accent);
+  overflow: hidden;
+  position: relative;
+  min-height: auto;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.project-pane {
+  display: none;
+  height: 100%;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.project-pane.active {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  height: 100%;
+}
+
+.projects-showcase .work-image {
+  aspect-ratio: auto;
+  height: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: none;
+}
+
+.projects-showcase .browser-mockup {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-void);
+  border: none;
+  border-radius: 0px;
+  overflow: hidden;
+}
+
+.projects-showcase .browser-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.projects-showcase .browser-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.projects-showcase .browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.projects-showcase .browser-dot.dot-red { background: #FF5F56; }
+.projects-showcase .browser-dot.dot-yellow { background: #FFBD2E; }
+.projects-showcase .browser-dot.dot-green { background: #27C93F; }
+
+.projects-showcase .browser-address {
+  flex: 1;
+  background: var(--bg-void);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: var(--space-4);
+  max-width: 60%;
+}
+
+.projects-showcase .browser-body {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: var(--bg-void);
+}
+
+.projects-showcase .browser-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .projects-showcase .work-image {
+    border-right: none;
+    border-bottom: 1px solid var(--border-subtle);
+    min-height: 280px;
+  }
+}
+
+/* 7. Experience Timeline Stepper */
+.experience-stepper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  margin-bottom: var(--space-8);
+  padding: var(--space-4) 0;
+}
+
+.experience-stepper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: var(--border-subtle);
+  z-index: 1;
+}
+
+.experience-step-node {
+  width: 40px;
+  height: 40px;
+  background: var(--bg-void);
+  border: 2px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-family: var(--font-mono);
+  font-weight: bold;
+  color: var(--text-muted);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  position: relative;
+}
+
+.experience-step-node:hover {
+  border-color: var(--neon-primary);
+  color: var(--neon-primary);
+}
+
+.experience-step-node.active {
+  border-color: var(--neon-primary);
+  background: var(--neon-primary);
+  color: var(--bg-void);
+  box-shadow: var(--glow-primary);
+}
+
+.experience-step-label {
+  position: absolute;
+  top: 48px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  transform: translateX(0);
+  transition: color 0.3s;
+}
+
+.experience-step-node.active + .experience-step-label {
+  color: var(--neon-primary);
+  font-weight: bold;
+}
+
+.experience-stepper-display {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-accent);
+  padding: var(--space-6);
+  min-height: auto;
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+}
+
+.experience-stepper-pane {
+  display: none;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.experience-stepper-pane.active {
+  display: block;
+}
+
+/* 8. Journey Stepper HUD */
+.journey-stepper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: var(--space-8);
+}
+
+.journey-progress-track {
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  top: 25px;
+  height: 2px;
+  background: var(--border-subtle);
+  z-index: 1;
+}
+
+.journey-progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: var(--neon-primary);
+  box-shadow: var(--glow-primary);
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.journey-step-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  width: 100px;
+  background: transparent;
+  border: none;
+}
+
+.journey-step-node .circle {
+  width: 50px;
+  height: 50px;
+  background: var(--bg-void);
+  border: 2px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: var(--text-secondary);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-bottom: var(--space-2);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.journey-step-node:hover .circle {
+  border-color: var(--neon-primary);
+  color: var(--neon-primary);
+}
+
+.journey-step-node.active .circle {
+  border-color: var(--neon-primary);
+  background: rgba(0, 232, 168, 0.10);
+  color: var(--neon-primary);
+  box-shadow: var(--glow-primary);
+}
+
+.journey-step-node span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  transition: color 0.3s;
+}
+
+.journey-step-node.active span {
+  color: var(--neon-primary);
+  font-weight: bold;
+}
+
+.journey-stepper-display {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-accent);
+  padding: var(--space-6);
+  min-height: auto;
+  border-radius: var(--radius-lg);
+}
+
+:root[data-theme="dark"] .journey-stepper-display {
+  clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 15px, 100% 100%, 15px 100%, 0 calc(100% - 15px));
+  border-radius: 0px !important;
+}
+
+.journey-stepper-pane {
+  display: none;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.journey-stepper-pane.active {
+  display: block;
+}
+
+/* 9. High-contrast Text Visibility Override Rules */
+.tool-badge {
+  background: var(--bg-void) !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.tool-badge:hover {
+  background: rgba(0, 232, 168, 0.06) !important;
+  border-color: var(--neon-primary) !important;
+  color: var(--neon-primary) !important;
+}
+
+/* Roadmap inner details visibility */
+.roadmap-pane-detail-card {
+  background: var(--bg-void) !important;
+  border: 1px solid var(--border-subtle) !important;
+  padding: var(--space-3) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+/* 10. Cyberpunk Pentagon/Hexagon Button Clippings Override (Dark Mode Only) */
+:root[data-theme="dark"] .btn,
+:root[data-theme="dark"] .btn-sharp {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)) !important;
+  border-radius: 0px !important;
+  font-family: var(--font-mono) !important;
+  letter-spacing: 1px !important;
+}
+
+/* 11. Header HUD Improvements */
+.nav-header {
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-deep);
+}
+
+.nav-header.scrolled {
+  background: var(--bg-glass) !important;
+  border-bottom: 1px solid var(--neon-primary) !important;
+  box-shadow: 0 4px 20px rgba(0, 255, 204, 0.08) !important;
+}
+
+.hud-logo-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-family: var(--font-mono);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--neon-primary);
+  text-shadow: var(--glow-primary);
+}
+
+.hud-bracket {
+  color: var(--text-muted);
+  opacity: 0.5;
+  font-weight: 300;
+}
+
+/* Blinking terminal pulse inside header */
+.hud-logo-status {
+  width: 6px;
+  height: 6px;
+  background: var(--neon-primary);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  animation: hudStatusBlink 1.5s infinite;
+  margin-left: 6px;
+  box-shadow: var(--glow-primary);
+}
+
+@keyframes hudStatusBlink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Animations */
+@keyframes dashFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .about-pane.active {
+    grid-template-columns: 1fr;
+  }
+  .why-console {
+    grid-template-columns: 1fr;
+  }
+  .projects-showcase {
+    grid-template-columns: 1fr;
+  }
+  .project-pane.active {
+    grid-template-columns: 1fr;
+  }
+  .services-hud-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .journey-stepper {
+    flex-wrap: wrap;
+    gap: var(--space-4);
+  }
+  .journey-stepper::before {
+    display: none;
+  }
+  .journey-step-node {
+    width: calc(33% - 12px);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-hamburger {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 1010;
+  }
+  
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: var(--bg-overlay) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-bottom: 1px solid var(--border-accent) !important;
+    flex-direction: column;
+    padding: var(--space-6) var(--space-8) !important;
+    gap: var(--space-4) !important;
+    z-index: 1005;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  
+  .nav-links.open {
+    display: flex !important;
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  /* Animate hamburger lines to cross */
+  .nav-hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg) !important;
+  }
+  .nav-hamburger.open span:nth-child(2) {
+    opacity: 0 !important;
+  }
+  .nav-hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg) !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-hamburger {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-hud-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .journey-step-node {
+    width: calc(50% - 12px);
+  }
+  .experience-step-label {
+    display: none;
+  }
+}
+
+/* 12. Progressive Disclosure Toggle Button Style */
+.rv-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--bg-deep) !important;
+  border: 1px solid var(--border-subtle) !important;
+  color: var(--neon-primary) !important;
+  font-family: var(--font-body) !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: var(--radius-md) !important;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+:root[data-theme="dark"] .rv-toggle-btn {
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px)) !important;
+  border-radius: 0px !important;
+  font-family: var(--font-mono) !important;
+}
+
+.rv-toggle-btn:hover {
+  border-color: var(--neon-primary) !important;
+  background: rgba(0, 232, 168, 0.05) !important;
+  color: var(--neon-primary) !important;
+  box-shadow: var(--glow-primary);
+}
+
+/* 13. Progressive Disclosure Item Hiding Rules */
+.rv-item--extra {
+  display: none !important;
+}
+
+.open .rv-item--extra {
+  display: block !important;
+  animation: dashFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@supports (display: grid) {
+  .open.achievements-grid .rv-item--extra {
+    display: grid !important;
+  }
+}
+/* 14. Phosphor Icons Design System */
+.ph {
+  font-size: 20px;
+  vertical-align: middle;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.3s, filter 0.3s;
+}
+
+/* Neon color coding */
+.ph-primary { color: var(--neon-primary) !important; }
+.ph-cyan { color: var(--neon-cyan) !important; }
+.ph-teal { color: var(--neon-teal) !important; }
+.ph-blue { color: var(--neon-blue) !important; }
+.ph-aqua { color: var(--neon-aqua) !important; }
+
+/* Sub 3D Scale on Hover (no shaking, very clean and professional!) */
+.about-tab-btn:hover .ph,
+.why-console-btn:hover .ph,
+.services-hud-cell:hover .ph,
+.project-menu-btn:hover .ph,
+.journey-step-node:hover .ph,
+.achievement-card:hover .ph {
+  transform: scale(1.18) translate3d(0, -2px, 0) !important;
+  filter: drop-shadow(0 0 6px currentColor) !important;
+}
+

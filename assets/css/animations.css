@@ -22,3 +22,100 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ─── 3D GEOMETRY & ISOMETRIC CSS ─── */
+
+.float-3d {
+  animation: float-3d 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes float-3d {
+  0% { transform: translateY(0) rotateX(20deg) rotateY(10deg); }
+  50% { transform: translateY(-15px) rotateX(25deg) rotateY(15deg); }
+  100% { transform: translateY(0) rotateX(20deg) rotateY(10deg); }
+}
+
+.spin-3d {
+  animation: spin-3d 10s linear infinite;
+  transform-style: preserve-3d;
+}
+
+@keyframes spin-3d {
+  0% { transform: rotateX(20deg) rotateY(0deg); }
+  100% { transform: rotateX(20deg) rotateY(360deg); }
+}
+
+/* 3D Cube */
+.shape-cube {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-20deg) rotateY(45deg);
+}
+.shape-cube .face {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 255, 204, 0.1);
+  border: 2px solid var(--neon-primary);
+  box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.5);
+  backdrop-filter: blur(4px);
+}
+.shape-cube .front  { transform: translateZ(20px); }
+.shape-cube .back   { transform: translateZ(-20px) rotateY(180deg); }
+.shape-cube .right  { transform: translateX(20px) rotateY(90deg); }
+.shape-cube .left   { transform: translateX(-20px) rotateY(-90deg); }
+.shape-cube .top    { transform: translateY(-20px) rotateX(90deg); }
+.shape-cube .bottom { transform: translateY(20px) rotateX(-90deg); }
+
+/* Hexagon Clip Path */
+.shape-hex {
+  width: 48px;
+  height: 56px;
+  background: rgba(0, 255, 204, 0.1);
+  border-left: 2px solid var(--neon-primary);
+  border-right: 2px solid var(--neon-primary);
+  position: relative;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  box-shadow: var(--glow-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Sharp Button Clip Path (Dark Mode Only) */
+:root[data-theme="dark"] .btn-sharp {
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  border-radius: 0 !important;
+}
+
+/* Symmetrical Card Edge Glow */
+.geom-card {
+  position: relative;
+  border-radius: 0 !important;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  overflow: visible;
+}
+.geom-card::before, .geom-card::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--neon-primary);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.geom-card::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
+.geom-card::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
+.geom-card:hover {
+  transform: translateZ(30px) translateY(-5px);
+  box-shadow: 10px 10px 0px rgba(0, 255, 204, 0.1);
+  border-color: var(--neon-primary);
+}
+.geom-card:hover::before, .geom-card:hover::after {
+  opacity: 1;
+}

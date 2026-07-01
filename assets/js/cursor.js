@@ -1,4 +1,4 @@
-// cursor.js — Custom cursor with hover effects
+// cursor.js — Zero-lag precision pointer with trailing elastic frame
 (function() {
   if (window.innerWidth < 1024) return;
 
@@ -10,32 +10,35 @@
 
   var mouseX = 0, mouseY = 0;
   var cxX = 0, cxY = 0;
-  var ciX = 0, ciY = 0;
+
+  // Set initial position out of view to avoid flash
+  cx.style.left = '-100px';
+  cx.style.top = '-100px';
+  ci.style.left = '-100px';
+  ci.style.top = '-100px';
 
   document.addEventListener('mousemove', function(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    // Position active pointer TIP instantly for 100% zero-lag clicking accuracy!
+    ci.style.left = mouseX + 'px';
+    ci.style.top = mouseY + 'px';
   });
 
   function animate() {
-    // Smooth follow for outer circle
-    cxX += (mouseX - cxX) * 0.12;
-    cxY += (mouseY - cxY) * 0.12;
+    // Elastic follow for the outer diamond frame
+    cxX += (mouseX - cxX) * 0.16;
+    cxY += (mouseY - cxY) * 0.16;
     cx.style.left = cxX + 'px';
     cx.style.top = cxY + 'px';
-
-    // Faster follow for inner dot
-    ciX += (mouseX - ciX) * 0.25;
-    ciY += (mouseY - ciY) * 0.25;
-    ci.style.left = ciX + 'px';
-    ci.style.top = ciY + 'px';
 
     requestAnimationFrame(animate);
   }
   requestAnimationFrame(animate);
 
   // Hover effects
-  var hoverTargets = document.querySelectorAll('a, button, .tilt-card, .magnetic, .btn, .chip, .nav-logo, input, textarea, select');
+  var hoverTargets = document.querySelectorAll('a, button, .tilt-card, .magnetic, .btn, .chip, .nav-logo, input, textarea, select, .about-tab-btn, .services-hud-cell, .journey-step-node');
   hoverTargets.forEach(function(el) {
     el.style.cursor = 'none';
     el.addEventListener('mouseenter', function() { cx.classList.add('hover'); });

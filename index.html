@@ -82,10 +82,13 @@
   <link rel="stylesheet" href="/assets/css/light.css">
   <link rel="stylesheet" href="/assets/css/main.css" media="print" onload="this.media='all'">
   <link rel="stylesheet" href="/assets/css/animations.css" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="/assets/css/reveal.css" media="print" onload="this.media='all'">
   <noscript>
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/animations.css">
+    <link rel="stylesheet" href="/assets/css/reveal.css">
   </noscript>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
   <script>
     // Inline Theme script to prevent FOUC
     const theme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
@@ -94,23 +97,31 @@
 </head>
 <body class="loading">
   <!-- Phosphor SVG Icons Sprite Placeholder -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <svg xmlns="http://www.w3.org/2000/svg" style="position: absolute; width: 0; height: 0; overflow: hidden;" aria-hidden="true">
     <symbol id="ico-briefcase" viewBox="0 0 256 256"><path fill="currentColor" d="M216,72H176V56a24,24,0,0,0-24-24H104A24,24,0,0,0,80,56V72H40A16,16,0,0,0,24,88V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V88A16,16,0,0,0,216,72ZM96,56a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8V72H96ZM216,88v25.43c-39.73,11.51-80,11.52-120,.05A303.11,303.11,0,0,1,40,113.43V88Zm0,112H40V130.34c38.74,12.56,79.52,12.56,120,.05A319,319,0,0,0,216,130.34Z"/></symbol>
     <symbol id="ico-heartbeat" viewBox="0 0 256 256"><path fill="currentColor" d="M240,94c0,70-104,122.61-108.91,125a8,8,0,0,1-6.18,0C120,216.61,16,164,16,94A54,54,0,0,1,70,40c22.56,0,41.48,12.72,58,28.66C144.52,52.72,163.44,40,186,40A54,54,0,0,1,240,94Zm-16,0a38,38,0,0,0-38-38c-18.79,0-35.32,11-50,26a8,8,0,0,1-12,0c-14.68-15-31.21-26-50-26A38,38,0,0,0,32,94c0,58.36,88.75,103.54,96,107.13C135.25,197.54,224,152.36,224,94ZM176.62,115a8,8,0,0,1-6,2.94H149.25l-13.88,41.62a8,8,0,0,1-15.3-.2l-21.78-76.22L86.63,113.8A8,8,0,0,1,71.37,109l16-48a8,8,0,0,1,15.3.2L124.45,137.4l13.88-41.62a8,8,0,0,1,15.3,0l16,48A8,8,0,0,1,176.62,115Z"/></symbol>
     <symbol id="ico-robot" viewBox="0 0 256 256"><path fill="currentColor" d="M216,88H200V80a24,24,0,0,0-24-24H144V40a16,16,0,0,0-32,0V56H80A24,24,0,0,0,56,80v8H40a16,16,0,0,0-16,16v32a16,16,0,0,0,16,16H56v48a24,24,0,0,0,24,24H176a24,24,0,0,0,24-24V152h16a16,16,0,0,0,16-16V104A16,16,0,0,0,216,88ZM128,40a8,8,0,0,1,16,0V56H128ZM40,136V104H56v32Zm144,64a8,8,0,0,1-8,8H80a8,8,0,0,1-8-8V80a8,8,0,0,1,8-8H176a8,8,0,0,1,8,8Zm32-64H200V104h16v32ZM84,116a12,12,0,1,1,12,12A12,12,0,0,1,84,116Zm64,0a12,12,0,1,1,12,12A12,12,0,0,1,148,116Zm16,40H92a8,8,0,0,0,0,16h72a8,8,0,0,0,0-16Z"/></symbol>
     <symbol id="ico-wrench" viewBox="0 0 256 256"><path fill="currentColor" d="M221.66,133.66l-72,72A8,8,0,0,1,138.34,200L102.63,164.29,42.34,224.58a8,8,0,0,1-11.31,0L19.71,213.26a8,8,0,0,1,0-11.31l60.29-60.29L44.29,106a8,8,0,0,1,0-11.31l63-63A56.32,56.32,0,0,1,184,29a8,8,0,0,1,8,8,32,32,0,0,0,32,32,8,8,0,0,1,8,8A56.28,56.28,0,0,1,221.66,133.66Zm-11.31-41A48,48,0,0,1,167,41.25a72.48,72.48,0,0,0-54,1.86L55.61,100.34l31.51,31.52A8,8,0,0,1,87.12,143.17L22.58,207.72l6.23,6.23L93.36,149.4a8,8,0,0,1,11.31,0l31.52,31.51,57.23-57.22A72.36,72.36,0,0,0,210.35,92.65Z"/></symbol>
     <symbol id="ico-blueprint" viewBox="0 0 256 256"><path fill="currentColor" d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200Zm-32-64v24a8,8,0,0,1-16,0V136a8,8,0,0,1,16,0ZM96,88a8,8,0,0,1-8,8H72v64H88a8,8,0,0,1,0,16H56a8,8,0,0,1,0-16H64V88H56a8,8,0,0,1,0-16H88A8,8,0,0,1,96,88Zm64,0a8,8,0,0,1-8,8H128v40h24a8,8,0,0,1,0,16H120a8,8,0,0,1-8-8V88a8,8,0,0,1,8-8h32A8,8,0,0,1,160,88Z"/></symbol>
     <symbol id="ico-arrow-right" viewBox="0 0 256 256"><path fill="currentColor" d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
-    <!-- We can add the rest of icons here later. I've added the ones used on the homepage mainly -->
+    <symbol id="ico-shield" viewBox="0 0 256 256"><path fill="currentColor" d="M208,40H48A16,16,0,0,0,32,56v58.78c0,83.09,72.44,128.53,92.83,139.72a16.14,16.14,0,0,0,16.34,0c20.39-11.19,92.83-56.63,92.83-139.72V56A16,16,0,0,0,208,40Zm0,74.78c0,70.52-58,110.15-80,121.22-22-11.07-80-50.7-80-121.22V56H208Z"/></symbol>
+    <symbol id="ico-users" viewBox="0 0 256 256"><path fill="currentColor" d="M117.25,156.92a16,16,0,1,0-18.5,0A72.13,72.13,0,0,0,51.09,190.4a8,8,0,0,0,13.82,8,56,56,0,0,1,86.18,0,8,8,0,0,0,13.82-8A72.13,72.13,0,0,0,117.25,156.92ZM108,144a24,24,0,1,1,24-24A24,24,0,0,1,108,144Zm104.73,46.4a72.06,72.06,0,0,0-47.65-33.48,16,16,0,1,0-18.16,0,72.4,72.4,0,0,0,10.6,6.33,8,8,0,0,0,7-14.41,56.12,56.12,0,0,1,34.39,0,8,8,0,0,0,7-14.41C190.73,126.4,198.81,112,198.81,96s-8.08-30.4-21.71-36.8a8,8,0,0,0-7,14.4,40.16,40.16,0,0,1,12.71,22.4,8,8,0,0,0,0,32,40.16,40.16,0,0,1-12.71,22.4,8,8,0,0,0,7,14.4c13.63-6.4,21.71-20.8,21.71-36.8S190.73,65.6,177.1,59.2Z"/></symbol>
+    <symbol id="ico-globe" viewBox="0 0 256 256"><path fill="currentColor" d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM215.15,120H176.4a159.2,159.2,0,0,0-9.87-59.5A88.19,88.19,0,0,1,215.15,120ZM128,40a158.74,158.74,0,0,1,31.78,80H96.22A158.74,158.74,0,0,1,128,40ZM79.6,60.5A159.2,159.2,0,0,0,69.73,120H30.93A88.19,88.19,0,0,1,79.6,60.5ZM30.93,136H69.73a159.2,159.2,0,0,0,9.87,59.5A88.19,88.19,0,0,1,30.93,136Zm135.6,59.5a159.2,159.2,0,0,0,9.87-59.5h38.75A88.19,88.19,0,0,1,166.53,195.5ZM128,216a158.74,158.74,0,0,1-31.78-80h63.56A158.74,158.74,0,0,1,128,216Z"/></symbol>
+    <symbol id="ico-package" viewBox="0 0 256 256"><path fill="currentColor" d="M222.39,82.88l-88-48.1a15.93,15.93,0,0,0-16.78,0l-88,48.1A16,16,0,0,0,20.8,97v62a16,16,0,0,0,8.81,14.12l88,48.1a15.9,15.9,0,0,0,16.78,0l88-48.1A16,16,0,0,0,235.2,159V97A16,16,0,0,0,222.39,82.88ZM128,47.26,204.09,88.9,128,130.41,51.91,88.9ZM36.8,103.73l83.2,45.41v71.49l-83.2-45.51Zm182.4,55.39-83.2,45.51V149.14l83.2-45.41Z"/></symbol>
+    <symbol id="ico-certificate" viewBox="0 0 256 256"><path fill="currentColor" d="M192,24H64A16,16,0,0,0,48,40V216a16,16,0,0,0,24,13.86L128,192l56,37.86A16,16,0,0,0,208,216V40A16,16,0,0,0,192,24Zm0,192-64-43.29V104a8,8,0,0,0-16,0v68.71L48,216V40H192ZM88,80a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H96A8,8,0,0,1,88,80Z"/></symbol>
+    <symbol id="ico-link" viewBox="0 0 256 256"><path fill="currentColor" d="M128,160a8,8,0,0,1-8-8,56.06,56.06,0,0,1,56-56h32a56,56,0,0,1,0,112H176a8,8,0,0,1,0-16h32a40,40,0,0,0,0-80H176a40,40,0,0,0-40,40A8,8,0,0,1,128,160Zm-48-8H48a40,40,0,0,0,0,80H80a40,40,0,0,0,40-40,8,8,0,0,0-16,0,24,24,0,0,1-24,24H48a24,24,0,0,1,0-48H80a8,8,0,0,0,0-16Z"/></symbol>
+    <symbol id="ico-kanban" viewBox="0 0 256 256"><path fill="currentColor" d="M216,48H40A16,16,0,0,0,24,64V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V64A16,16,0,0,0,216,48Zm0,144H40V64H216V192ZM88,88v48a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Zm48,0v80a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Zm48,0v32a8,8,0,0,1-16,0V88a8,8,0,0,1,16,0Z"/></symbol>
+    <symbol id="ico-code" viewBox="0 0 256 256"><path fill="currentColor" d="M69.66,74.34a8,8,0,0,0-11.32,0l-48,48a8,8,0,0,0,0,11.32l48,48a8,8,0,0,0,11.32-11.32L27.31,128,69.66,85.66A8,8,0,0,0,69.66,74.34Zm116.68,0a8,8,0,0,0-11.32,11.32L217.31,128l-42.34,42.34a8,8,0,0,0,11.32,11.32l48-48a8,8,0,0,0,0-11.32ZM162.73,42.42a8,8,0,0,0-10.31,4.85l-64,160a8,8,0,1,0,14.85,5.94l64-160A8,8,0,0,0,162.73,42.42Z"/></symbol>
+    <symbol id="ico-envelope" viewBox="0 0 256 256"><path fill="currentColor" d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.06,64,128,114.38,52.94,64ZM216,192H40V80.31l82.72,55.14a8,8,0,0,0,8.56,0L216,80.31V192Z"/></symbol>
+    <symbol id="ico-phone" viewBox="0 0 256 256"><path fill="currentColor" d="M192,24H64A24,24,0,0,0,40,48V208a24,24,0,0,0,24,24H192a24,24,0,0,0,24-24V48A24,24,0,0,0,192,24Zm8,184a8,8,0,0,1-8,8H64a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H192a8,8,0,0,1,8,8Zm-72,8a12,12,0,1,1,12-12A12,12,0,0,1,128,216Z"/></symbol>
+    <symbol id="ico-map-pin" viewBox="0 0 256 256"><path fill="currentColor" d="M128,16a88.1,88.1,0,0,0-88,88c0,75.3,80,132.17,83.41,134.55a8,8,0,0,0,9.18,0C136,236.17,216,179.3,216,104A88.1,88.1,0,0,0,128,16Zm0,112a24,24,0,1,1,24-24A24,24,0,0,1,128,128Z"/></symbol>
+    <symbol id="ico-clock" viewBox="0 0 256 256"><path fill="currentColor" d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/></symbol>
+    <symbol id="ico-check-circle-fill" viewBox="0 0 256 256"><path fill="currentColor" d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"/></symbol>
   </svg>
 
   <!-- 2. Loader -->
   <div id="ldr" class="loader">
-    <div class="loader-content">
-      <div class="loader-wordmark">AG.</div>
-      <div class="loader-progress-bar"><div class="loader-progress"></div></div>
-      <div class="loader-label">INITIALIZING SYSTEM</div>
-    </div>
+    <!-- Loader content injected by loader.js -->
   </div>
 
   <!-- 3. Custom cursor -->
@@ -120,18 +131,33 @@
   <!-- 4. Sticky Nav -->
   <header class="nav-header">
     <div class="container nav-container">
-      <a href="/" class="nav-logo">AG.</a>
-      <nav class="nav-links">
+      <a href="/" class="nav-logo">
+        <div class="hud-logo-wrapper">
+          <span class="hud-bracket">[</span>
+          <span class="hud-logo-text">AG</span>
+          <span class="hud-bracket">]</span>
+          <span class="hud-logo-status" title="Aaryan: Available"></span>
+        </div>
+      </a>
+      <nav class="nav-links" id="nav-links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
       </nav>
       <div class="nav-actions">
         <button id="theme-toggle" aria-label="Toggle theme">
           <svg width="20" height="20" aria-hidden="true"><use href="#ico-moon"/></svg>
         </button>
-        <a href="#contact" class="btn btn-primary btn-sm magnetic">Book a Call</a>
+        <a href="#contact" class="btn btn-sharp btn-primary btn-sharp btn-sm magnetic">Book a Call</a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="nav-links">
+          <span style="display:block; width:22px; height:2px; background:var(--text-bright); border-radius:2px; transition:all 0.3s var(--ease-out);"></span>
+          <span style="display:block; width:16px; height:2px; background:var(--text-bright); border-radius:2px; transition:all 0.3s var(--ease-out); margin-top:5px;"></span>
+          <span style="display:block; width:22px; height:2px; background:var(--text-bright); border-radius:2px; transition:all 0.3s var(--ease-out); margin-top:5px;"></span>
+        </button>
       </div>
     </div>
   </header>
@@ -148,35 +174,35 @@
       <div class="container hero-container">
         <div class="badge-row">
           <span class="pulse-dot"></span>
-          Available for projects · Jaipur, Ahmedabad & Remote
+          Available for Projects & Roles · Remote & Local
         </div>
         <h1 class="hero-title">
-          <span>Technical Project Manager for</span><br>
-          <span class="text-accent" id="typewriter">Health-Tech & SaaS Teams</span>
+          <span>The PM Who</span><br>
+          <span class="text-accent" id="typewriter">Speaks Dev. Delivers Results.</span>
         </h1>
         <p class="hero-subtitle">
-          I bridge complex technology with seamless execution — so clinics, startups and product teams ship faster, smarter and at scale.
+          I bridge complex technology with seamless execution — so healthcare, SaaS, and product teams ship faster, smarter, and at scale. Developer-turned-PM with full-stack technical fluency.
         </p>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary btn-lg magnetic">Book a Free 30-Min Call</a>
-          <a href="#work" class="btn btn-ghost btn-lg">See My Work <svg width="20" height="20" aria-hidden="true"><use href="#ico-arrow-right"/></svg></a>
+          <a href="#contact" class="btn btn-sharp btn-primary btn-sharp btn-lg magnetic">Book Free 30-Min Call</a>
+          <a href="#work" class="btn btn-sharp btn-ghost btn-lg">View My Work <svg width="20" height="20" aria-hidden="true"><use href="#ico-arrow-right"/></svg></a>
         </div>
         <div class="proof-bar">
           <div class="proof-item">
             <strong>70+</strong>
-            <span>Markets Delivered</span>
+            <span>Markets</span>
           </div>
           <div class="proof-item">
             <strong>20+</strong>
-            <span>Projects Managed</span>
+            <span>Projects</span>
           </div>
           <div class="proof-item">
-            <strong>Health-Tech</strong>
-            <span>Primary Specialization</span>
+            <strong>3+</strong>
+            <span>Years</span>
           </div>
           <div class="proof-item">
-            <strong>Jaipur</strong>
-            <span>Priority Market</span>
+            <strong>5+</strong>
+            <span>Products Built</span>
           </div>
         </div>
         <div class="scroll-indicator">
@@ -188,42 +214,239 @@
     <!-- 6. Marquee -->
     <div class="marquee" aria-hidden="true">
       <div class="marquee-content">
-        <!-- Content will be injected by JS or duplicated here -->
         <span>Technical Project Management</span> <span class="dot">•</span>
-        <span>Health-Tech Consulting</span> <span class="dot">•</span>
-        <span>AI Automation</span> <span class="dot">•</span>
+        <span>HealthTech Digital Strategy</span> <span class="dot">•</span>
+        <span>Agile & Scrum Delivery</span> <span class="dot">•</span>
+        <span>AI Automation Consulting</span> <span class="dot">•</span>
+        <span>Micro-SaaS Development</span> <span class="dot">•</span>
         <span>SaaS Project Coordination</span> <span class="dot">•</span>
-        <span>Sprint Governance</span> <span class="dot">•</span>
+        <span>70+ International Markets</span> <span class="dot">•</span>
       </div>
       <div class="marquee-content" aria-hidden="true">
         <span>Technical Project Management</span> <span class="dot">•</span>
-        <span>Health-Tech Consulting</span> <span class="dot">•</span>
-        <span>AI Automation</span> <span class="dot">•</span>
+        <span>HealthTech Digital Strategy</span> <span class="dot">•</span>
+        <span>Agile & Scrum Delivery</span> <span class="dot">•</span>
+        <span>AI Automation Consulting</span> <span class="dot">•</span>
+        <span>Micro-SaaS Development</span> <span class="dot">•</span>
         <span>SaaS Project Coordination</span> <span class="dot">•</span>
-        <span>Sprint Governance</span> <span class="dot">•</span>
+        <span>70+ International Markets</span> <span class="dot">•</span>
       </div>
     </div>
 
     <!-- 7. About -->
     <section id="about" class="section">
-      <div class="container about-grid">
-        <div class="about-image-wrapper">
-          <picture>
-            <source srcset="/assets/images/profile/aaryan-gupta-tpm.avif" type="image/avif">
-            <source srcset="/assets/images/profile/aaryan-gupta-tpm.webp" type="image/webp">
-            <img src="/assets/images/profile/aaryan-gupta-tpm.jpg" alt="Aaryan Gupta, Technical Project Manager" width="400" height="500" loading="lazy">
-          </picture>
+      <div class="container">
+        <div class="section-header">
+          <h2>About Aaryan Gupta</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">The PM Who Speaks Developer</p>
         </div>
-        <div class="about-content">
-          <h2>Bridging the gap between engineering and business.</h2>
-          <p>Hi, I'm Aaryan Gupta. With a background in software engineering (MCA from AKTU) and hands-on experience in full-stack development, I transitioned into project management to solve the real bottleneck: execution.</p>
-          <div class="skill-chips">
-            <span class="chip">Agile</span>
-            <span class="chip">Scrum</span>
-            <span class="chip">Health-Tech</span>
-            <span class="chip">SaaS</span>
-            <span class="chip">React.js</span>
-            <span class="chip">Node.js</span>
+
+        <div class="dash-container" style="margin-top: var(--space-6);">
+          <div class="about-tab-group">
+            <button class="about-tab-btn active" data-target="pane-vision" role="tab" aria-selected="true">
+              <i class="ph ph-briefcase ph-primary" style="margin-right:6px; font-size:16px;"></i>
+              Vision & Bio
+            </button>
+            <button class="about-tab-btn" data-target="pane-engineering" role="tab" aria-selected="false">
+              <i class="ph ph-code ph-cyan" style="margin-right:6px; font-size:16px;"></i>
+              Engineering Fluency
+            </button>
+            <button class="about-tab-btn" data-target="pane-management" role="tab" aria-selected="false">
+              <i class="ph ph-kanban ph-teal" style="margin-right:6px; font-size:16px;"></i>
+              Management Framework
+            </button>
+          </div>
+
+          <!-- Tab Pane 1: Vision & Bio -->
+          <div class="about-pane active" id="pane-vision" role="tabpanel" aria-hidden="false">
+            <div class="about-image-wrapper">
+              <picture>
+                <source srcset="/assets/images/profile/aaryan-gupta-tpm.avif" type="image/avif">
+                <source srcset="/assets/images/profile/aaryan-gupta-tpm.webp" type="image/webp">
+                <img src="/assets/images/profile/aaryan-gupta-tpm.jpg" alt="Aaryan Gupta, Technical Project Manager" width="360" height="420" loading="lazy" style="border:1px solid var(--border-accent);">
+              </picture>
+              <div class="about-links" style="display:flex; justify-content:center; gap:var(--space-3); margin-top:var(--space-3);">
+                <a href="{{SOCIAL_LINKEDIN}}" target="_blank" rel="noopener" class="btn btn-sharp btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M224,40H32A16,16,0,0,0,16,56V200a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V56A16,16,0,0,0,224,40ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8-80a12,12,0,1,1,12-12A12,12,0,0,1,88,96Zm96,80a8,8,0,0,1-16,0V140c0-11-4-16-10-16s-12,5-12,16v36a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0v4a27.67,27.67,0,0,1,22-6c16,2,26,15,26,32Z"/></svg> LinkedIn</a>
+                <a href="{{SOCIAL_GITHUB}}" target="_blank" rel="noopener" class="btn btn-sharp btn-ghost btn-sm"><svg width="14" height="14" fill="currentColor" viewBox="0 0 256 256"><path d="M208,104a47.88,47.88,0,0,1-12.28,31.7,75.14,75.14,0,0,1-34.9,19.3A48,48,0,0,1,152,200v24a8,8,0,0,1-16,0V200a32,32,0,0,0-32-32H96a8,8,0,0,1,0-16h8a48,48,0,0,1,45.18,32H152a32,32,0,0,0,32-32V136a8,8,0,0,1,2.83-6.13A32,32,0,0,0,192,104a32.12,32.12,0,0,0-9.6-22.8,8,8,0,0,1-.8-9A32,32,0,0,0,176,56c-13.88,0-34.88,9.75-43.24,14.65a8.07,8.07,0,0,1-7.52,0C116.88,65.75,95.88,56,82,56a32,32,0,0,0-5.6,16.2,8,8,0,0,1-.8,9A32.12,32.12,0,0,0,66,104a32,32,0,0,0,4.77,15.87A8,8,0,0,1,73.6,131a48,48,0,0,1-34.9-19.3A47.88,47.88,0,0,1,26.4,80,48,48,0,0,1,72,32a48.06,48.06,0,0,1,36,16h40a48.06,48.06,0,0,1,36-16A48,48,0,0,1,208,104Z"/></svg> GitHub</a>
+              </div>
+            </div>
+            <div class="about-content">
+              <h3 style="color:var(--neon-primary); margin-bottom:var(--space-3); font-family:var(--font-display);">Bridging Complex Dev with Precise PM</h3>
+              <p style="font-size:var(--text-base); color:var(--text-primary);">Aaryan Gupta is a Developer-turned-PM based in Jaipur, India, with 3+ years of experience leading frontend engineering, AI integration, and agile operations.</p>
+              <p style="color:var(--text-secondary);">Currently managing delivery across 70+ international markets at Oblinex. He coordinates developer sprints, oversees infrastructure setup, and conducts QA validation to ship apps with zero friction.</p>
+              <div class="about-attributes grid-2-cols" style="margin-top:var(--space-6);">
+                <div style="display:flex; gap:10px; align-items:center;">
+                  <i class="ph ph-globe ph-primary" style="font-size:24px;"></i>
+                  <div>
+                    <strong style="color:var(--text-bright); font-size:13px; display:block;">Markets Managed</strong>
+                    <span style="color:var(--text-muted); font-size:12px;">70+ Global Jurisdictions</span>
+                  </div>
+                </div>
+                <div style="display:flex; gap:10px; align-items:center;">
+                  <i class="ph ph-kanban ph-cyan" style="font-size:24px;"></i>
+                  <div>
+                    <strong style="color:var(--text-bright); font-size:13px; display:block;">Agile Leadership</strong>
+                    <span style="color:var(--text-muted); font-size:12px;">Jira, Sprint Governance</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 2: Engineering Fluency -->
+          <div class="about-pane" id="pane-engineering" role="tabpanel" aria-hidden="true">
+            <div class="about-image-wrapper">
+              <!-- Inline Full Stack Tech Telemetry Diagram SVG -->
+              <svg viewBox="0 0 360 420" width="100%" height="100%" style="border:1px solid var(--border-accent); background:var(--bg-void); padding:var(--space-6); display:block; border-radius:var(--radius-lg);" class="geom-card">
+                <defs>
+                  <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur"></feGaussianBlur>
+                    <feMerge>
+                      <feMergeNode in="blur"></feMergeNode>
+                      <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                  </filter>
+                </defs>
+                <circle cx="180" cy="210" r="42" fill="none" stroke="var(--neon-cyan)" stroke-width="2" filter="url(#glow-cyan)"></circle>
+                <text x="180" y="214" font-family="var(--font-mono)" font-size="12" fill="var(--neon-cyan)" text-anchor="middle" font-weight="bold">CODE</text>
+                <line x1="180" y1="168" x2="180" y2="80" stroke="var(--border-subtle)" stroke-dasharray="4,4" stroke-width="1.5"></line>
+                <line x1="180" y1="252" x2="180" y2="340" stroke="var(--border-subtle)" stroke-dasharray="4,4" stroke-width="1.5"></line>
+                <line x1="138" y1="210" x2="60" y2="210" stroke="var(--border-subtle)" stroke-dasharray="4,4" stroke-width="1.5"></line>
+                <line x1="222" y1="210" x2="300" y2="210" stroke="var(--border-subtle)" stroke-dasharray="4,4" stroke-width="1.5"></line>
+                <g transform="translate(180, 80)">
+                  <circle cx="0" cy="0" r="28" fill="var(--bg-deep)" stroke="var(--neon-cyan)" stroke-width="1.5"></circle>
+                  <path d="M-8,-6 L8,-6 M-8,0 L8,0 M-8,6 L8,6" stroke="var(--neon-cyan)" stroke-width="1.5" fill="none"></path>
+                  <text x="0" y="45" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">FRONTEND</text>
+                </g>
+                <g transform="translate(60, 210)">
+                  <circle cx="0" cy="0" r="28" fill="var(--bg-deep)" stroke="var(--neon-primary)" stroke-width="1.5"></circle>
+                  <path d="M-8,-8 L8,-8 L8,8 L-8,8 Z M-8,-2 L8,-2 M-8,4 L8,4" stroke="var(--neon-primary)" stroke-width="1.5" fill="none"></path>
+                  <text x="0" y="45" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">BACKEND</text>
+                </g>
+                <g transform="translate(300, 210)">
+                  <circle cx="0" cy="0" r="28" fill="var(--bg-deep)" stroke="var(--neon-teal)" stroke-width="1.5"></circle>
+                  <path d="M-8,-4 L0,4 L8,-4" stroke="var(--neon-teal)" stroke-width="1.5" fill="none"></path>
+                  <text x="0" y="45" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">DEVOPS</text>
+                </g>
+                <g transform="translate(180, 340)">
+                  <circle cx="0" cy="0" r="28" fill="var(--bg-deep)" stroke="var(--neon-cyan)" stroke-width="1.5"></circle>
+                  <path d="M0,-8 L8,4 L-8,4 Z" stroke="var(--neon-cyan)" stroke-width="1.5" fill="none"></path>
+                  <text x="0" y="-38" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">INTEGRATION</text>
+                </g>
+              </svg>
+            </div>
+            <div class="about-content" style="display:flex; flex-direction:column; gap:var(--space-6);">
+              <div>
+                <h3 style="color:var(--neon-cyan); font-family:var(--font-display); margin-bottom:var(--space-2);">Full-Stack Technical Literacy</h3>
+                <p style="color:var(--text-secondary); line-height:1.6; margin:0;">Having a frontend developer background means Aaryan reads the source code, understands database schemas, reviews API contracts, and communicates with developers in their own language.</p>
+              </div>
+              <div class="grid-3-cols" style="background:var(--bg-void); padding:var(--space-4); border:1px solid var(--border-subtle); border-radius:var(--radius-md);">
+                <div>
+                  <strong style="color:var(--neon-cyan); font-family:var(--font-mono); font-size:11px; display:block; margin-bottom:4px; text-transform:uppercase;">Frontend</strong>
+                  <span style="color:var(--text-muted); font-size:11px;">React.js, TypeScript, TailwindCSS</span>
+                </div>
+                <div>
+                  <strong style="color:var(--neon-cyan); font-family:var(--font-mono); font-size:11px; display:block; margin-bottom:4px; text-transform:uppercase;">Backend</strong>
+                  <span style="color:var(--text-muted); font-size:11px;">Node.js, Express, MongoDB</span>
+                </div>
+                <div>
+                  <strong style="color:var(--neon-cyan); font-family:var(--font-mono); font-size:11px; display:block; margin-bottom:4px; text-transform:uppercase;">DevOps</strong>
+                  <span style="color:var(--text-muted); font-size:11px;">Git, Docker, CI/CD, Linux</span>
+                </div>
+              </div>
+              <div>
+                <h3 style="color:var(--neon-cyan); margin-bottom:var(--space-2); font-family:var(--font-display);">Specialized Focus</h3>
+                <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">He specializes in building micro-SaaS platforms, OPD queue managers, clinical software solutions, and integrating LLMs (GPT, Claude APIs) using automated webhooks (n8n, Make).</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane 3: Management Framework -->
+          <div class="about-pane" id="pane-management" role="tabpanel" aria-hidden="true">
+            <div class="about-image-wrapper">
+              <!-- Inline Agile Governance Timeline Diagram SVG -->
+              <svg viewBox="0 0 360 420" width="100%" height="100%" style="border:1px solid var(--border-accent); background:var(--bg-void); padding:var(--space-6); display:block; border-radius:var(--radius-lg);" class="geom-card">
+                <defs>
+                  <filter id="glow-teal" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur"></feGaussianBlur>
+                    <feMerge>
+                      <feMergeNode in="blur"></feMergeNode>
+                      <feMergeNode in="SourceGraphic"></feMergeNode>
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path d="M180,90 A110,110 0 1,1 179,90" fill="none" stroke="var(--border-subtle)" stroke-width="3" stroke-dasharray="6,6"></path>
+                <path d="M180,90 A110,110 0 1,1 80,260" fill="none" stroke="var(--neon-teal)" stroke-width="4" filter="url(#glow-teal)" stroke-linecap="round"></path>
+                <circle cx="180" cy="200" r="42" fill="var(--bg-deep)" stroke="var(--neon-teal)" stroke-width="1.5"></circle>
+                <text x="180" y="196" font-family="var(--font-mono)" font-size="11" fill="var(--neon-teal)" text-anchor="middle" font-weight="bold">AGILE</text>
+                <text x="180" y="210" font-family="var(--font-mono)" font-size="9" fill="var(--text-muted)" text-anchor="middle">DELIVERY</text>
+                <g transform="translate(180, 90)">
+                  <circle cx="0" cy="0" r="16" fill="var(--bg-deep)" stroke="var(--neon-teal)" stroke-width="1.5"></circle>
+                  <text x="0" y="4" font-family="var(--font-mono)" font-size="9" fill="var(--neon-teal)" text-anchor="middle" font-weight="bold">1</text>
+                  <text x="0" y="-22" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">PLANNING</text>
+                </g>
+                <g transform="translate(290, 200)">
+                  <circle cx="0" cy="0" r="16" fill="var(--bg-deep)" stroke="var(--neon-teal)" stroke-width="1.5"></circle>
+                  <text x="0" y="4" font-family="var(--font-mono)" font-size="9" fill="var(--neon-teal)" text-anchor="middle" font-weight="bold">2</text>
+                  <text x="0" y="32" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">SPRINT</text>
+                </g>
+                <g transform="translate(180, 310)">
+                  <circle cx="0" cy="0" r="16" fill="var(--bg-deep)" stroke="var(--neon-teal)" stroke-width="1.5"></circle>
+                  <text x="0" y="4" font-family="var(--font-mono)" font-size="9" fill="var(--neon-teal)" text-anchor="middle" font-weight="bold">3</text>
+                  <text x="0" y="32" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">GOVERNANCE</text>
+                </g>
+                <g transform="translate(70, 200)">
+                  <circle cx="0" cy="0" r="16" fill="var(--bg-deep)" stroke="var(--neon-teal)" stroke-width="1.5"></circle>
+                  <text x="0" y="4" font-family="var(--font-mono)" font-size="9" fill="var(--neon-teal)" text-anchor="middle" font-weight="bold">4</text>
+                  <text x="0" y="-22" font-family="var(--font-mono)" font-size="10" fill="var(--text-bright)" text-anchor="middle" font-weight="600">RELEASE</text>
+                </g>
+              </svg>
+            </div>
+            <div class="about-content" style="display:flex; flex-direction:column; gap:var(--space-6);">
+              <div>
+                <h3 style="color:var(--neon-teal); font-family:var(--font-display); margin-bottom:var(--space-2);">Agile Delivery & Governance</h3>
+                <p style="color:var(--text-secondary); line-height:1.6; margin:0;">Using Miro, Jira, and Notion, Aaryan coordinates distributed engineering teams to deliver projects on-time and with minimized scope creep.</p>
+              </div>
+              <div class="grid-2-cols">
+                <div class="geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); background:var(--bg-void); border-radius:var(--radius-md);">
+                  <strong style="color:var(--neon-teal); font-family:var(--font-mono); font-size:11px; display:block; margin-bottom:var(--space-1);">Sprint Operations</strong>
+                  <p style="font-size:12px; color:var(--text-muted); margin:0;">Daily standups, backlog grooming, sprint planning, and retrospective validation.</p>
+                </div>
+                <div class="geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); background:var(--bg-void); border-radius:var(--radius-md);">
+                  <strong style="color:var(--neon-teal); font-family:var(--font-mono); font-size:11px; display:block; margin-bottom:var(--space-1);">Stakeholder Alignment</strong>
+                  <p style="font-size:12px; color:var(--text-muted); margin:0;">Translating complex technical milestones into commercial and operational business roadmaps.</p>
+                </div>
+              </div>
+              <div>
+                <h3 style="color:var(--neon-teal); margin-bottom:var(--space-2); font-family:var(--font-display);">Credentials</h3>
+                <ul style="color:var(--text-secondary); font-size:14px; display:flex; flex-direction:column; gap:6px; padding-left:20px; margin:0; line-height:1.6;">
+                  <li><strong>MCA:</strong> Lloyd Institute / AKTU (2023 - 2025)</li>
+                  <li><strong>BCA:</strong> Munger University (2019 - 2023)</li>
+                  <li><strong>IBM Virtual Internship:</strong> Web & Mobile Developer Certification</li>
+                  <li><strong>Nasscom:</strong> Digital Application Fundamentals Certification</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stats Dashboard Banner -->
+          <div class="stats-dashboard grid-4-cols" style="margin-top:var(--space-6); border-top:1px solid var(--border-subtle); padding-top:var(--space-6);">
+            <div class="stat-card geom-card" style="padding:var(--space-4); background:var(--bg-deep); border:1px solid var(--border-subtle); text-align:center;">
+              <div class="stat-num" style="font-size:var(--text-3xl); font-weight:800; color:var(--neon-primary); font-family:var(--font-display); line-height:1; margin-bottom:4px;">70+</div>
+              <div class="stat-label" style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Markets Managed</div>
+            </div>
+            <div class="stat-card geom-card" style="padding:var(--space-4); background:var(--bg-deep); border:1px solid var(--border-subtle); text-align:center;">
+              <div class="stat-num" style="font-size:var(--text-3xl); font-weight:800; color:var(--neon-cyan); font-family:var(--font-display); line-height:1; margin-bottom:4px;">20+</div>
+              <div class="stat-label" style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Projects Shipped</div>
+            </div>
+            <div class="stat-card geom-card" style="padding:var(--space-4); background:var(--bg-deep); border:1px solid var(--border-subtle); text-align:center;">
+              <div class="stat-num" style="font-size:var(--text-3xl); font-weight:800; color:var(--neon-teal); font-family:var(--font-display); line-height:1; margin-bottom:4px;">3+</div>
+              <div class="stat-label" style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Years Experience</div>
+            </div>
+            <div class="stat-card geom-card" style="padding:var(--space-4); background:var(--bg-deep); border:1px solid var(--border-subtle); text-align:center;">
+              <div class="stat-num" style="font-size:var(--text-3xl); font-weight:800; color:var(--neon-blue); font-family:var(--font-display); line-height:1; margin-bottom:4px;">5+</div>
+              <div class="stat-label" style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">SaaS Products</div>
+            </div>
           </div>
         </div>
       </div>
@@ -233,9 +456,14 @@
     <section id="why" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Why Developer-Turned-PMs Deliver Faster</h2>
+          <h2>Why Aaryan Gupta</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">What Sets This PM Apart</p>
         </div>
         
+        <p style="max-width:650px; color:var(--text-secondary); font-size:var(--text-lg); line-height:var(--leading-relaxed); margin-bottom:var(--space-8);">
+          Most PMs understand process. Few understand the code behind the process. That gap is where projects fail — and where I operate.
+        </p>
+
         <!-- Pain point slider -->
         <div class="pain-points-slider">
           <div class="pain-card">
@@ -249,27 +477,75 @@
           </div>
         </div>
 
-        <!-- Differentiators -->
-        <div class="why-grid" style="margin-top: 3rem;">
-          <div class="tilt-card why-card">
-            <div class="why-num">01</div>
-            <h3>Technical Fluency</h3>
-            <p>React/Node expertise. I challenge estimates because I understand the codebase.</p>
+        <!-- Console HUD Differentiators -->
+        <div class="why-console" style="margin-top: 3rem;">
+          <div class="why-console-menu">
+            <button class="why-console-btn active" data-target="why-panel-1" role="tab" aria-selected="true">
+              <span class="num">01</span>
+              <span>Developer DNA</span>
+            </button>
+            <button class="why-console-btn" data-target="why-panel-2" role="tab" aria-selected="false">
+              <span class="num">02</span>
+              <span>70+ Markets Shipped</span>
+            </button>
+            <button class="why-console-btn" data-target="why-panel-3" role="tab" aria-selected="false">
+              <span class="num">03</span>
+              <span>HealthTech Focus</span>
+            </button>
+            <button class="why-console-btn" data-target="why-panel-4" role="tab" aria-selected="false">
+              <span class="num">04</span>
+              <span>AI-Native Workflow</span>
+            </button>
           </div>
-          <div class="tilt-card why-card">
-            <div class="why-num">02</div>
-            <h3>PM Discipline</h3>
-            <p>Agile, QA, release management. I spot feature creep before it costs you weeks.</p>
-          </div>
-          <div class="tilt-card why-card">
-            <div class="why-num">03</div>
-            <h3>Health-Tech Specialization</h3>
-            <p>Deep domain knowledge in clinical workflows and SaaS product cycles.</p>
-          </div>
-          <div class="tilt-card why-card">
-            <div class="why-num">04</div>
-            <h3>Outcome-Oriented</h3>
-            <p>Results, not just deliverables. I align technical decisions with revenue goals.</p>
+
+          <div class="why-console-display">
+            <!-- Pane 1 -->
+            <div class="why-display-pane active" id="why-panel-1">
+              <span style="font-family:var(--font-mono); color:var(--neon-primary); font-size:11px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">Competency 01</span>
+              <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-3);">Developer DNA</h3>
+              <p style="color:var(--text-secondary); line-height:var(--leading-relaxed); font-size:var(--text-base);">Built in React, Node.js, Firebase, and DevOps before managing those who do. Aaryan estimates complexity without asking developers — saving 40% of sprint planning overhead.</p>
+              <div style="margin-top:var(--space-4); display:flex; gap:10px;">
+                <span class="tool-badge" style="color:var(--neon-primary); border-color:var(--neon-primary); background:rgba(0, 232, 168, 0.05);">API Reviews</span>
+                <span class="tool-badge" style="color:var(--neon-primary); border-color:var(--neon-primary); background:rgba(0, 232, 168, 0.05);">Complexity Audit</span>
+                <span class="tool-badge" style="color:var(--neon-primary); border-color:var(--neon-primary); background:rgba(0, 232, 168, 0.05);">Code Reading</span>
+              </div>
+            </div>
+
+            <!-- Pane 2 -->
+            <div class="why-display-pane" id="why-panel-2">
+              <span style="font-family:var(--font-mono); color:var(--neon-cyan); font-size:11px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">Competency 02</span>
+              <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-3);">70+ Markets Shipped</h3>
+              <p style="color:var(--text-secondary); line-height:var(--leading-relaxed); font-size:var(--text-base);">Overseeing client product releases across India, UAE, UK, USA, Europe, and Southeast Asia. Experienced in timezone-proof systems, async-first workflows, and zero-friction global handoffs.</p>
+              <div style="margin-top:var(--space-4); display:flex; gap:10px;">
+                <span class="tool-badge" style="color:var(--neon-cyan); border-color:var(--neon-cyan); background:rgba(0, 210, 255, 0.05);">Global Delivery</span>
+                <span class="tool-badge" style="color:var(--neon-cyan); border-color:var(--neon-cyan); background:rgba(0, 210, 255, 0.05);">Async Operations</span>
+                <span class="tool-badge" style="color:var(--neon-cyan); border-color:var(--neon-cyan); background:rgba(0, 210, 255, 0.05);">App Store Releases</span>
+              </div>
+            </div>
+
+            <!-- Pane 3 -->
+            <div class="why-display-pane" id="why-panel-3">
+              <span style="font-family:var(--font-mono); color:var(--neon-teal); font-size:11px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">Competency 03</span>
+              <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-3);">HealthTech Focus</h3>
+              <p style="color:var(--text-secondary); line-height:var(--leading-relaxed); font-size:var(--text-base);">Deeply focused on the clinical workflow problem. India's 600K+ doctors deserve better digital tools — tools built around how clinicians actually work, not design assumptions.</p>
+              <div style="margin-top:var(--space-4); display:flex; gap:10px;">
+                <span class="tool-badge" style="color:var(--neon-teal); border-color:var(--neon-teal); background:rgba(0, 255, 170, 0.05);">OPD Systems</span>
+                <span class="tool-badge" style="color:var(--neon-teal); border-color:var(--neon-teal); background:rgba(0, 255, 170, 0.05);">EMR Workflows</span>
+                <span class="tool-badge" style="color:var(--neon-teal); border-color:var(--neon-teal); background:rgba(0, 255, 170, 0.05);">Doctor-UX</span>
+              </div>
+            </div>
+
+            <!-- Pane 4 -->
+            <div class="why-display-pane" id="why-panel-4">
+              <span style="font-family:var(--font-mono); color:var(--neon-blue); font-size:11px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">Competency 04</span>
+              <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-3);">AI-Native Workflow</h3>
+              <p style="color:var(--text-secondary); line-height:var(--leading-relaxed); font-size:var(--text-base);">Integrates LLMs, automation webhooks, and AI APIs into real delivery systems. Reduces admin work by 60%, surfaces blockers early, and updates stakeholders with zero lag.</p>
+              <div style="margin-top:var(--space-4); display:flex; gap:10px;">
+                <span class="tool-badge" style="color:var(--neon-blue); border-color:var(--neon-blue); background:rgba(0, 100, 255, 0.05);">Botpress</span>
+                <span class="tool-badge" style="color:var(--neon-blue); border-color:var(--neon-blue); background:rgba(0, 100, 255, 0.05);">n8n Webhooks</span>
+                <span class="tool-badge" style="color:var(--neon-blue); border-color:var(--neon-blue); background:rgba(0, 100, 255, 0.05);">Prompt Dev</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -278,75 +554,137 @@
     <!-- 9. Services -->
     <section id="services" class="section">
       <div class="container">
-        <div class="section-header">
-          <h2>What I Do</h2>
-        </div>
-        <div class="services-grid" id="services-container">
-          <div class="tilt-card service-card featured">
-            <div class="service-icon"><svg width="32" height="32" aria-hidden="true"><use href="#ico-blueprint"/></svg></div>
-            <h3>Technical Project Management</h3>
-            <p class="service-tagline">End-to-end delivery coordination. Agile-first. Full lifecycle ownership.</p>
-            <ul class="service-bullets">
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Sprint planning & backlog management</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Cross-functional team leadership</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> QA validation & release governance</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Stakeholder reporting</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Play Store & App Store launches</li>
-            </ul>
-            <div class="service-pricing">
-              <span class="price-in">₹25,000/project</span>
-              <span class="price-global">$500/project</span>
-            </div>
+        <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-4); margin-bottom:var(--space-6);">
+          <div>
+            <h2>What I Deliver</h2>
+            <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin:0;">Services & Core Offerings</p>
           </div>
-          <div class="tilt-card service-card">
-            <div class="service-icon"><svg width="32" height="32" aria-hidden="true"><use href="#ico-heartbeat"/></svg></div>
-            <h3>Health-Tech Consulting</h3>
-            <p class="service-tagline">For doctors and clinics who need a PM who understands clinical reality.</p>
-            <ul class="service-bullets">
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Clinic digitization strategy</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Patient management system PM</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> EMR & telemedicine coordination</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Clinical workflow mapping</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> HealthTech startup advisory</li>
-            </ul>
-            <div class="service-pricing">
-              <span class="price-in">₹20,000/month</span>
-              <span class="price-global">$400/month</span>
-            </div>
-          </div>
-          <div class="tilt-card service-card">
-            <div class="service-icon"><svg width="32" height="32" aria-hidden="true"><use href="#ico-robot"/></svg></div>
-            <h3>AI Automation & Micro-SaaS</h3>
-            <p class="service-tagline">Build AI-powered tools once. Deploy for 100+ clients. Client pays infrastructure.</p>
-            <ul class="service-bullets">
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> WhatsApp AI auto-reply bots</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> AI lead qualification agents</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Clinic appointment systems</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> AI customer support agents</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Custom micro-SaaS products</li>
-            </ul>
-            <div class="service-pricing">
-              <span class="price-in">₹4,000 one-time</span>
-              <span class="price-global">$69 one-time</span>
-            </div>
-          </div>
-          <div class="tilt-card service-card">
-            <div class="service-icon"><svg width="32" height="32" aria-hidden="true"><use href="#ico-wrench"/></svg></div>
-            <h3>Website Maintenance</h3>
-            <p class="service-tagline">Ongoing management for clinics, businesses, and SaaS teams.</p>
-            <ul class="service-bullets">
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Uptime monitoring & security patches</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Performance optimization</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Monthly SEO health audits</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Content updates (10/month)</li>
-              <li><svg width="16" height="16" aria-hidden="true"><use href="#ico-check-circle-fill"/></svg> Analytics reporting</li>
-            </ul>
-            <div class="service-pricing">
-              <span class="price-in">From ₹8,000/month</span>
-              <span class="price-global">From $149/month</span>
-            </div>
+          <div style="display:flex; align-items:center; gap:var(--space-3);">
+            <a href="#contact" class="btn btn-sharp btn-ghost btn-sm" style="margin:0;">Get a Quote →</a>
           </div>
         </div>
+
+        <div class="dash-container">
+          <!-- 6-cell HUD Grid Selection -->
+          <div class="services-hud-grid">
+            <button class="services-hud-cell active" data-target="service-pane-tpm" role="tab" aria-selected="true">
+              <i class="ph ph-briefcase ph-primary" style="font-size:24px;"></i>
+              <h4>Tech PM</h4>
+            </button>
+            <button class="services-hud-cell" data-target="service-pane-healthtech" role="tab" aria-selected="false">
+              <i class="ph ph-heartbeat ph-cyan" style="font-size:24px;"></i>
+              <h4>HealthTech</h4>
+            </button>
+            <button class="services-hud-cell" data-target="service-pane-ai" role="tab" aria-selected="false">
+              <i class="ph ph-cpu ph-teal" style="font-size:24px;"></i>
+              <h4>AI Auto</h4>
+            </button>
+            <button class="services-hud-cell" data-target="service-pane-saas" role="tab" aria-selected="false">
+              <i class="ph ph-app-window ph-blue" style="font-size:24px;"></i>
+              <h4>Micro-SaaS</h4>
+            </button>
+            <button class="services-hud-cell" data-target="service-pane-maint" role="tab" aria-selected="false">
+              <i class="ph ph-wrench ph-aqua" style="font-size:24px;"></i>
+              <h4>Maintenance</h4>
+            </button>
+            <button class="services-hud-cell" data-target="service-pane-dev" role="tab" aria-selected="false">
+              <i class="ph ph-users-three ph-primary" style="font-size:24px;"></i>
+              <h4>Dev Coord</h4>
+            </button>
+          </div>
+
+          <!-- Services Display Pane -->
+          <div class="services-hud-display">
+            <!-- TPM Pane -->
+            <div class="services-pane active" id="service-pane-tpm">
+              <div style="flex-grow:1; max-width:65%;">
+                <h3 style="color:var(--text-bright); margin-bottom:var(--space-2);">Technical Project Management</h3>
+                <p style="color:var(--text-secondary); font-size:14px;">End-to-end delivery ownership from requirements mapping to final deployment. Agile sprint governance, blocker resolution, daily standups, and rigorous milestone validation.</p>
+                <div class="skill-chips" style="margin-top:var(--space-4);">
+                  <span class="chip">Agile</span>
+                  <span class="chip">Scrum</span>
+                  <span class="chip">Jira Governance</span>
+                  <span class="chip">QA Validation</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sharp btn-primary btn-sharp magnetic">Book Project Call</a>
+            </div>
+
+            <!-- HealthTech Pane -->
+            <div class="services-pane" id="service-pane-healthtech">
+              <div style="flex-grow:1; max-width:65%;">
+                <h3 style="color:var(--neon-cyan); margin-bottom:var(--space-2);">HealthTech Consulting</h3>
+                <p style="color:var(--text-secondary); font-size:14px;">Clinical workflow digitization for doctors, clinics, and health startups. Scope and manage tools configured for the 3-minute patient slot, EMR records, and lab integration.</p>
+                <div class="skill-chips" style="margin-top:var(--space-4);">
+                  <span class="chip">EMR Integration</span>
+                  <span class="chip">Clinic Flow</span>
+                  <span class="chip">Doctor UX</span>
+                  <span class="chip">Lab Tracking</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sharp btn-ghost magnetic" style="border-color:var(--neon-cyan); color:var(--neon-cyan);">Consult HealthTech</a>
+            </div>
+
+            <!-- AI Automation Pane -->
+            <div class="services-pane" id="service-pane-ai">
+              <div style="flex-grow:1; max-width:65%;">
+                <h3 style="color:var(--neon-teal); margin-bottom:var(--space-2);">AI Automation Integration</h3>
+                <p style="color:var(--text-secondary); font-size:14px;">WhatsApp conversational bots, AI lead qualifiers, auto-responders, and script pipelines via n8n, Make, Botpress, and OpenAI/Claude APIs. One-time setup, zero monthly builder fee.</p>
+                <div class="skill-chips" style="margin-top:var(--space-4);">
+                  <span class="chip">n8n / Make</span>
+                  <span class="chip">OpenAI API</span>
+                  <span class="chip">Botpress Agents</span>
+                  <span class="chip">Webhooks</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sharp btn-ghost magnetic" style="border-color:var(--neon-teal); color:var(--neon-teal);">Setup Automation</a>
+            </div>
+
+            <!-- Micro-SaaS Pane -->
+            <div class="services-pane" id="service-pane-saas">
+              <div style="flex-grow:1; max-width:65%;">
+                <h3 style="color:var(--neon-blue); margin-bottom:var(--space-2);">Micro-SaaS Software Modules</h3>
+                <p style="color:var(--text-secondary); font-size:14px;">Ready-made software systems for Indian SMBs — clinic queue management (TokenQ), digital prescription pads (RxPad Pro), and patient follow-up tools (RecallMD). Self-hosted, single purchase.</p>
+                <div class="skill-chips" style="margin-top:var(--space-4);">
+                  <span class="chip">Self-Hosted</span>
+                  <span class="chip">Micro-SaaS</span>
+                  <span class="chip">TokenQ</span>
+                  <span class="chip">RxPad Pro</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sharp btn-ghost magnetic" style="border-color:var(--neon-blue); color:var(--neon-blue);">View SaaS Modules</a>
+            </div>
+
+            <!-- Maintenance Pane -->
+            <div class="services-pane" id="service-pane-maint">
+              <div style="flex-grow:1; max-width:65%;">
+                <h3 style="color:var(--neon-aqua); margin-bottom:var(--space-2);">Website Maintenance Retainer</h3>
+                <p style="color:var(--text-secondary); font-size:14px;">Monthly retainer support for clinics and micro-businesses. Minor bugs, regular updates, page changes, speed optimization, and hosting server checks with under 24-hour turnaround.</p>
+                <div class="skill-chips" style="margin-top:var(--space-4);">
+                  <span class="chip">Security Updates</span>
+                  <span class="chip">Performance Audit</span>
+                  <span class="chip">Uptime Check</span>
+                  <span class="chip">On-Call Fixes</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sharp btn-ghost magnetic" style="border-color:var(--neon-aqua); color:var(--neon-aqua);">Start Retainer</a>
+            </div>
+
+            <!-- Dev Team Pane -->
+            <div class="services-pane" id="service-pane-dev">
+              <div style="flex-grow:1; max-width:65%;">
+                <h3 style="color:var(--neon-primary); margin-bottom:var(--space-2);">Developer Coordination</h3>
+                <p style="color:var(--text-secondary); font-size:14px;">Managing and coordinating distributed developers on behalf of business owners. Planning daily sprints, testing task completion, resolving API blocks, and keeping you updated.</p>
+                <div class="skill-chips" style="margin-top:var(--space-4);">
+                  <span class="chip">Dev Governance</span>
+                  <span class="chip">Sprint Delivery</span>
+                  <span class="chip">Code Review</span>
+                  <span class="chip">Blocker Clearing</span>
+                </div>
+              </div>
+              <a href="#contact" class="btn btn-sharp btn-ghost magnetic">Delegate Sprints</a>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -355,178 +693,495 @@
       <div class="container">
         <div class="section-header">
           <h2>Signature Projects</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">Proof of Delivery — Products built end-to-end</p>
         </div>
-        <div class="work-grid" id="work-container">
-          <div class="work-card tilt-card">
-            <div class="work-image"><img src="/assets/images/projects/projectport-preview.webp" alt="ProjectPort" loading="lazy"></div>
-            <div class="work-content">
-              <h3>ProjectPort</h3>
-              <p>Comprehensive PM dashboard for remote teams. Custom built using React & Node.</p>
-              <div class="work-links">
-                <a href="https://projectsport.vercel.app/" target="_blank" rel="noopener">View Live <svg width="16" height="16"><use href="#ico-arrow-square-out"/></svg></a>
+
+        <div class="dash-container" style="margin-top: var(--space-6);">
+          <div class="projects-showcase">
+            <div class="projects-menu">
+              <button class="project-menu-btn active" data-target="proj-pane-port" role="tab" aria-selected="true">
+                <span>01. SaaS Platform</span>
+                <h4>ProjectPort</h4>
+              </button>
+              <button class="project-menu-btn" data-target="proj-pane-uibrium" role="tab" aria-selected="false">
+                <span>02. NPM Library</span>
+                <h4>UiBrium</h4>
+              </button>
+              <button class="project-menu-btn" data-target="proj-pane-ai" role="tab" aria-selected="false">
+                <span>03. Conversational AI</span>
+                <h4>Aryanony AI Bot</h4>
+              </button>
+            </div>
+
+            <div class="project-display-panel">
+              <!-- ProjectPort -->
+              <div class="project-pane active" id="proj-pane-port">
+                <div class="work-image">
+                  <div class="browser-mockup">
+                    <div class="browser-header">
+                      <div class="browser-dots">
+                        <span class="browser-dot dot-red"></span>
+                        <span class="browser-dot dot-yellow"></span>
+                        <span class="browser-dot dot-green"></span>
+                      </div>
+                      <div class="browser-address">projectsport.vercel.app</div>
+                    </div>
+                    <div class="browser-body">
+                      <iframe src="https://projectsport.vercel.app/" loading="lazy"></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:var(--space-6); display:flex; flex-direction:column; justify-content:space-between;">
+                  <div>
+                    <span style="font-family:var(--font-mono); color:var(--neon-primary); font-size:10px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">Product Automation</span>
+                    <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-2);">ProjectPort</h3>
+                    <p style="color:var(--text-secondary); font-size:14px; line-height:var(--leading-relaxed);">Full-stack client project automation platform. Automates client onboarding, dynamic quotation, lead tracking, and features real-time role-based dashboards.</p>
+                    <div class="skill-chips" style="margin-top:var(--space-4);">
+                      <span class="chip">React.js</span>
+                      <span class="chip">Node.js</span>
+                      <span class="chip">MongoDB</span>
+                      <span class="chip">Express</span>
+                    </div>
+                  </div>
+                  <div class="work-links" style="display:flex; gap:var(--space-4);">
+                    <a href="https://projectsport.vercel.app/" target="_blank" rel="noopener" class="btn btn-sharp btn-primary btn-sm magnetic">Live Demo</a>
+                    <a href="https://github.com/aryanony/ProjectPort" target="_blank" rel="noopener" class="btn btn-sharp btn-ghost btn-sm magnetic">GitHub</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- UiBrium -->
+              <div class="project-pane" id="proj-pane-uibrium">
+                <div class="work-image">
+                  <div class="browser-mockup">
+                    <div class="browser-header">
+                      <div class="browser-dots">
+                        <span class="browser-dot dot-red"></span>
+                        <span class="browser-dot dot-yellow"></span>
+                        <span class="browser-dot dot-green"></span>
+                      </div>
+                      <div class="browser-address">uibrium.vercel.app</div>
+                    </div>
+                    <div class="browser-body">
+                      <iframe src="https://uibrium.vercel.app/" loading="lazy"></iframe>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:var(--space-6); display:flex; flex-direction:column; justify-content:space-between;">
+                  <div>
+                    <span style="font-family:var(--font-mono); color:var(--neon-cyan); font-size:10px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">NPM Component Library</span>
+                    <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-2);">UiBrium</h3>
+                    <p style="color:var(--text-secondary); font-size:14px; line-height:var(--leading-relaxed);">Open-source React component library published on NPM. Features premium visual effects, customizable themes, geometric primitives, and headless layout structures.</p>
+                    <div class="skill-chips" style="margin-top:var(--space-4);">
+                      <span class="chip">React.js</span>
+                      <span class="chip">TypeScript</span>
+                      <span class="chip">TailwindCSS</span>
+                      <span class="chip">Turborepo</span>
+                    </div>
+                  </div>
+                  <div class="work-links" style="display:flex; gap:var(--space-4);">
+                    <a href="https://uibrium.vercel.app/" target="_blank" rel="noopener" class="btn btn-sharp btn-primary btn-sm magnetic" style="background:var(--neon-cyan); border-color:var(--neon-cyan); color:var(--bg-void);">Live Docs</a>
+                    <a href="https://www.npmjs.com/package/uibrium" target="_blank" rel="noopener" class="btn btn-sharp btn-ghost btn-sm magnetic" style="border-color:var(--neon-cyan); color:var(--neon-cyan);">NPM Registry</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Bot -->
+              <div class="project-pane" id="proj-pane-ai">
+                <div class="work-image">
+                  <div class="browser-mockup">
+                    <div class="browser-header">
+                      <div class="browser-dots">
+                        <span class="browser-dot dot-red"></span>
+                        <span class="browser-dot dot-yellow"></span>
+                        <span class="browser-dot dot-green"></span>
+                      </div>
+                      <div class="browser-address">ai.aryanony.dev</div>
+                    </div>
+                    <div class="browser-body" style="background:var(--bg-deep); padding:var(--space-4); display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                      <!-- Chat messages mockup -->
+                      <div style="display:flex; flex-direction:column; gap:var(--space-3); overflow-y:auto; flex:1;">
+                        <div style="align-self:flex-start; background:var(--bg-void); border:1px solid var(--border-subtle); padding:8px 12px; border-radius:4px; max-width:85%; font-size:11px; color:var(--text-primary); text-align:left;">
+                          Hi! I'm Aaryan's AI Assistant. How can I help you build your next HealthTech product today?
+                        </div>
+                        <div style="align-self:flex-end; background:var(--neon-primary); color:var(--bg-void); padding:8px 12px; border-radius:4px; max-width:85%; font-size:11px; font-weight:600; text-align:left;">
+                          Tell me about TokenQ and RxPad Pro.
+                        </div>
+                        <div style="align-self:flex-start; background:var(--bg-void); border:1px solid var(--border-subtle); padding:8px 12px; border-radius:4px; max-width:85%; font-size:11px; color:var(--text-primary); text-align:left;">
+                          TokenQ is a clinic queue automation tool and RxPad Pro handles digital prescriptions. I can deploy demo modules in 48 hours.
+                        </div>
+                      </div>
+                      <!-- Input bar mockup -->
+                      <div style="display:flex; gap:8px; border-top:1px solid var(--border-subtle); padding-top:var(--space-3); margin-top:var(--space-2);">
+                        <input type="text" placeholder="Type a message..." disabled style="flex:1; background:var(--bg-void); border:1px solid var(--border-subtle); padding:6px 12px; border-radius:4px; font-size:11px; color:var(--text-muted);">
+                        <button disabled style="background:var(--neon-primary); border:none; padding:6px 10px; border-radius:4px; color:var(--bg-void); cursor:not-allowed;"><i class="ph ph-paper-plane-tilt"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div style="padding:var(--space-6); display:flex; flex-direction:column; justify-content:space-between;">
+                  <div>
+                    <span style="font-family:var(--font-mono); color:var(--neon-teal); font-size:10px; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">LLM Integration</span>
+                    <h3 style="color:var(--text-bright); font-size:var(--text-2xl); margin-bottom:var(--space-2);">Aryanony AI Assistant</h3>
+                    <p style="color:var(--text-secondary); font-size:14px; line-height:var(--leading-relaxed);">Custom LLM-integrated conversational AI assistant for real-time information retrieval, contextual indexing, and automated customer follow-ups.</p>
+                    <div class="skill-chips" style="margin-top:var(--space-4);">
+                      <span class="chip">Botpress</span>
+                      <span class="chip">OpenAI API</span>
+                      <span class="chip">Claude API</span>
+                      <span class="chip">n8n Flows</span>
+                    </div>
+                  </div>
+                  <div class="work-links" style="display:flex; gap:var(--space-4);">
+                    <a href="https://aryanony.github.io/portfolio" target="_blank" rel="noopener" class="btn btn-sharp btn-primary btn-sm magnetic" style="background:var(--neon-teal); border-color:var(--neon-teal); color:var(--bg-void);">Test Agent</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="work-card tilt-card">
-            <div class="work-image"><img src="/assets/images/projects/uibrium-preview.webp" alt="Uibrium UI Component Library" loading="lazy"></div>
-            <div class="work-content">
-              <h3>Uibrium</h3>
-              <p>Premium UI component library for React. Over 50+ accessible components.</p>
-              <div class="work-links">
-                <a href="https://uibrium.vercel.app/" target="_blank" rel="noopener">View Live <svg width="16" height="16"><use href="#ico-arrow-square-out"/></svg></a>
-              </div>
-            </div>
-          </div>
-          <div class="work-card tilt-card">
-            <div class="work-image"><div style="width:100%;height:100%;background:var(--bg-card);display:flex;align-items:center;justify-content:center;color:var(--neon-primary);"><svg width="48" height="48"><use href="#ico-robot"/></svg></div></div>
-            <div class="work-content">
-              <h3>Health-Tech AI Bot</h3>
-              <p>WhatsApp-based clinic appointment scheduler deployed across 15+ clinics.</p>
-              <div class="work-links">
-                <a href="#contact">Case Study Available on Request</a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- 11. Experience -->
+    <!-- 11. Experience Infographic (Subway Map) -->
     <section id="experience" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Experience</h2>
+          <h2>Experience Roadmap</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">Career Trajectory & Delivery</p>
         </div>
-        <div class="experience-layout">
-          <div class="timeline" role="tablist" id="timeline-list">
-            <button class="timeline-item active" role="tab" data-target="panel-0">
-              <strong>Oblinex Pvt. Ltd.</strong><span>May 2026 – Present</span>
+        
+        <div class="dash-container" style="margin-top: var(--space-6);">
+          <!-- Horizontal Subway Stepper -->
+          <div class="experience-stepper">
+            <button class="experience-step-node active" data-target="exp-pane-oblinex" aria-label="Oblinex Experience">
+              <span>01</span>
+              <span class="experience-step-label">Oblinex</span>
             </button>
-            <button class="timeline-item" role="tab" data-target="panel-1">
-              <strong>MyDigiShell</strong><span>Apr 2025 – Feb 2026</span>
+            <button class="experience-step-node" data-target="exp-pane-digishell" aria-label="MyDigiShell Experience">
+              <span>02</span>
+              <span class="experience-step-label">MyDigiShell</span>
             </button>
-            <button class="timeline-item" role="tab" data-target="panel-2">
-              <strong>Elipact</strong><span>Nov 2021 – Mar 2022</span>
+            <button class="experience-step-node" data-target="exp-pane-elipact" aria-label="Elipact Experience">
+              <span>03</span>
+              <span class="experience-step-label">Elipact</span>
             </button>
-            <button class="timeline-item" role="tab" data-target="panel-3">
-              <strong>Ipistis + Startup Web Support</strong><span>Aug 2021 – Nov 2021</span>
+            <button class="experience-step-node" data-target="exp-pane-ipistis" aria-label="Ipistis Experience">
+              <span>04</span>
+              <span class="experience-step-label">Ipistis</span>
             </button>
           </div>
-          <div class="timeline-detail card" role="tabpanel" id="timeline-detail">
-            <!-- Content swaps via JS based on active tab -->
-            <div id="panel-0" class="timeline-panel active">
-              <h3 style="font-size:1.25rem;margin-bottom:0.5rem;">Associate Project Manager</h3>
-              <p style="color:var(--neon-primary);font-family:var(--font-mono);font-size:0.8rem;margin-bottom:1rem;">Oblinex Pvt. Ltd. · May 2026 – Present</p>
-              <ul style="color:var(--text-secondary);line-height:1.7;padding-left:1.2rem;">
-                <li>Managing end-to-end delivery across 70+ international markets — full lifecycle PM</li>
-                <li>Cross-functional team coordination via structured ticketing; sprint governance</li>
-                <li>VPS provisioning, Ubuntu server setup, SSL, domain config, database migration (Hostinger)</li>
-                <li>Android APK + iOS App Store release cycles via QA and client acceptance workflows</li>
-                <li>Post-delivery upselling: identifying scope additions, contributing to revenue expansion</li>
-                <li>Centralised credential governance via private Git repositories</li>
-              </ul>
-            </div>
-            
-            <div id="panel-1" class="timeline-panel" style="display:none;">
-              <h3 style="font-size:1.25rem;margin-bottom:0.5rem;">Frontend Web3 Developer Intern</h3>
-              <p style="color:var(--neon-primary);font-family:var(--font-mono);font-size:0.8rem;margin-bottom:1rem;">MyDigiShell · Apr 2025 – Feb 2026</p>
-              <ul style="color:var(--text-secondary);line-height:1.7;padding-left:1.2rem;">
-                <li>Coordinated multi-project Web3 frontend delivery over 11 months</li>
-                <li>Enforced cross-browser QA; blockchain wallet integration (React.js, Tailwind, Web3)</li>
-                <li>Pre-release performance optimization across all decentralised application deliveries</li>
-              </ul>
+
+          <!-- Stepper Content Display Panel -->
+          <div class="experience-stepper-display">
+            <!-- Oblinex Pane -->
+            <div class="experience-stepper-pane active" id="exp-pane-oblinex">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-4); flex-wrap:wrap; gap:var(--space-2);">
+                <div>
+                  <h3 style="color:var(--text-bright); font-size:var(--text-xl); margin-bottom:4px;">Associate Project Manager</h3>
+                  <p style="color:var(--neon-primary); font-family:var(--font-mono); font-size:12px;">Oblinex Pvt. Ltd. · Patna, India (Remote)</p>
+                </div>
+                <div style="background:var(--bg-deep); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:100px; font-family:var(--font-mono); font-size:10px; color:var(--text-secondary);">
+                  MAY 2026 — PRESENT
+                </div>
+              </div>
+
+              <div class="grid-auto-fit">
+                <div style="background:rgba(255,255,255,0.02); padding:var(--space-3); border-left:2px solid var(--neon-primary);">
+                  <strong style="color:var(--text-bright); font-size:13px; display:block; margin-bottom:4px;">Global Delivery</strong>
+                  <p style="font-size:12px; color:var(--text-muted); line-height:1.4; margin:0;">Managing end-to-end delivery across 70+ international markets — onboarding through infrastructure setup.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.02); padding:var(--space-3); border-left:2px solid var(--neon-cyan);">
+                  <strong style="color:var(--text-bright); font-size:13px; display:block; margin-bottom:4px;">Sprint Governance</strong>
+                  <p style="font-size:12px; color:var(--text-muted); line-height:1.4; margin:0;">Cross-functional developer coordination, tracking sprint-level progress, resolving blockers.</p>
+                </div>
+                <div style="background:rgba(255,255,255,0.02); padding:var(--space-3); border-left:2px solid var(--neon-teal);">
+                  <strong style="color:var(--text-bright); font-size:13px; display:block; margin-bottom:4px;">Account Expansion</strong>
+                  <p style="font-size:12px; color:var(--text-muted); line-height:1.4; margin:0;">Driving post-delivery upsell revenue by identifying feature customization opportunities.</p>
+                </div>
+              </div>
             </div>
 
-            <div id="panel-2" class="timeline-panel" style="display:none;">
-              <h3 style="font-size:1.25rem;margin-bottom:0.5rem;">Digital Marketer & E-Commerce Strategist</h3>
-              <p style="color:var(--neon-primary);font-family:var(--font-mono);font-size:0.8rem;margin-bottom:1rem;">Elipact · Nov 2021 – Mar 2022</p>
-              <ul style="color:var(--text-secondary);line-height:1.7;padding-left:1.2rem;">
-                <li>Orchestrated comprehensive digital marketing campaigns to drive e-commerce sales.</li>
-                <li>Optimized conversion funnels through data-driven A/B testing and analytics review.</li>
-              </ul>
+            <!-- MyDigiShell Pane -->
+            <div class="experience-stepper-pane" id="exp-pane-digishell">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-4); flex-wrap:wrap; gap:var(--space-2);">
+                <div>
+                  <h3 style="color:var(--text-bright); font-size:var(--text-xl); margin-bottom:4px;">Frontend Web3 Developer Intern</h3>
+                  <p style="color:var(--neon-cyan); font-family:var(--font-mono); font-size:12px;">MyDigiShell · Kolkata, India</p>
+                </div>
+                <div style="background:var(--bg-deep); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:100px; font-family:var(--font-mono); font-size:10px; color:var(--text-secondary);">
+                  APR 2025 — FEB 2026
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                Coordinated multi-project Web3 frontend delivery over 11 months — aligning backend developers, design stakeholders, and sprint timelines. Integrated blockchain wallet features and decentralized storage nodes using React.js and Tailwind CSS.
+              </p>
             </div>
 
-            <div id="panel-3" class="timeline-panel" style="display:none;">
-              <h3 style="font-size:1.25rem;margin-bottom:0.5rem;">Web Developer & WordPress Specialist</h3>
-              <p style="color:var(--neon-primary);font-family:var(--font-mono);font-size:0.8rem;margin-bottom:1rem;">Ipistis + Startup Web Support · Aug 2021 – Nov 2021</p>
-              <ul style="color:var(--text-secondary);line-height:1.7;padding-left:1.2rem;">
-                <li>Developed bespoke WordPress themes and plugins for emerging startups.</li>
-                <li>Managed client communications to translate business needs into technical specifications.</li>
-              </ul>
+            <!-- Elipact Pane -->
+            <div class="experience-stepper-pane" id="exp-pane-elipact">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-4); flex-wrap:wrap; gap:var(--space-2);">
+                <div>
+                  <h3 style="color:var(--text-bright); font-size:var(--text-xl); margin-bottom:4px;">Digital Marketer & E-Commerce Strategist</h3>
+                  <p style="color:var(--neon-teal); font-family:var(--font-mono); font-size:12px;">Elipact Enterprises · Patna, India</p>
+                </div>
+                <div style="background:var(--bg-deep); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:100px; font-family:var(--font-mono); font-size:10px; color:var(--text-secondary);">
+                  NOV 2021 — MAR 2022
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                Planned and executed search engine optimization (SEO) frameworks and content marketing roadmaps for Shopify and WordPress stores. Directed traffic generation metrics and optimized keywords for organic ranking increases.
+              </p>
+            </div>
+
+            <!-- Ipistis Pane -->
+            <div class="experience-stepper-pane" id="exp-pane-ipistis">
+              <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:var(--space-4); flex-wrap:wrap; gap:var(--space-2);">
+                <div>
+                  <h3 style="color:var(--text-bright); font-size:var(--text-xl); margin-bottom:4px;">Web Developer & WordPress Specialist</h3>
+                  <p style="color:var(--neon-blue); font-family:var(--font-mono); font-size:12px;">Ipistis Technologies · Kolkata, India</p>
+                </div>
+                <div style="background:var(--bg-deep); border:1px solid var(--border-subtle); padding:4px 12px; border-radius:100px; font-family:var(--font-mono); font-size:10px; color:var(--text-secondary);">
+                  AUG 2021 — NOV 2021
+                </div>
+              </div>
+              <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                Delivered SEO-optimised WordPress websites end-to-end for multiple clients. Handled front-end formatting, layout structure optimization, speed optimization, and security hardening procedures.
+              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 12. Skills -->
+    <!-- 11.5 Education & Certifications -->
+    <section id="education" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Education & Certifications</h2>
+        </div>
+        <div class="education-grid">
+          <div class="edu-card tilt-card geom-card">
+            <h3>Master of Computer Applications</h3>
+            <p class="edu-meta">Lloyd Institute of Engineering & Technology (AKTU) · 2023 - 2025</p>
+            <p>Advanced: MERN Stack, API Integration, Blockchain, AI & Prompt Engineering, DevOps.</p>
+          </div>
+          <div class="edu-card tilt-card geom-card">
+            <h3>Bachelor of Computer Applications</h3>
+            <p class="edu-meta">R.D & D.J College, Munger University · 2019 - 2023</p>
+            <p>Foundation: Web Development, UI/UX Design, SEO, Database Management.</p>
+          </div>
+          <div class="edu-card tilt-card geom-card certifications-card">
+            <h3>Certifications</h3>
+            <ul class="cert-list">
+              <li><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Virtual Internship - Web & Mobile Dev (IBM)</li>
+              <li><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Digital Application Fundamentals STEM (nasscom)</li>
+              <li><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> JS Algorithms & Data Structures (freeCodeCamp)</li>
+              <li><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Cryptocurrency & Blockchain (The Digital Adda)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12. Skills Infographic -->
     <section id="skills" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>Core Competencies</h2>
+          <h2>Technical Depth</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">Full-Stack Fluency & Competency Matrix</p>
         </div>
-        <div class="skills-matrix">
-          <div class="skill-category">
-            <h3>Project Management</h3>
-            <div class="skill-chips">
-              <span class="chip">Agile Methodology</span>
-              <span class="chip">Scrum</span>
-              <span class="chip">Sprint Planning</span>
-              <span class="chip">Risk Mitigation</span>
-              <span class="chip">Stakeholder Alignment</span>
-              <span class="chip">Jira / Trello / ClickUp</span>
+        
+        <div class="skills-infographic" style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8); align-items: center; margin-top: var(--space-6);">
+          <!-- Bar Charts -->
+          <div class="infographic-chart tilt-card geom-card" style="padding:var(--space-6); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); box-shadow:var(--glow-card);">
+            <h3 style="color:var(--text-bright); margin-bottom:var(--space-6); font-size:var(--text-xl);">Execution Competency</h3>
+            
+            <div class="chart-row" style="margin-bottom:var(--space-4);">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:var(--space-1); font-family:var(--font-mono);">
+                <span style="color:var(--text-primary);">PM & Agile Delivery</span>
+                <span style="color:var(--neon-primary);">95%</span>
+              </div>
+              <div style="width:100%; height:8px; background:var(--bg-deep); border-radius:100px; overflow:hidden; border:1px solid var(--border-void);">
+                <div style="width:95%; height:100%; background:linear-gradient(90deg, var(--neon-dark), var(--neon-primary)); box-shadow:var(--glow-teal); border-radius:100px;"></div>
+              </div>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Scrum, Jira, Sprint Governance, Stakeholder Reporting</p>
+            </div>
+
+            <div class="chart-row" style="margin-bottom:var(--space-4);">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:var(--space-1); font-family:var(--font-mono);">
+                <span style="color:var(--text-primary);">Health-Tech Domain</span>
+                <span style="color:var(--neon-primary);">90%</span>
+              </div>
+              <div style="width:100%; height:8px; background:var(--bg-deep); border-radius:100px; overflow:hidden; border:1px solid var(--border-void);">
+                <div style="width:90%; height:100%; background:linear-gradient(90deg, var(--neon-dark), var(--neon-primary)); box-shadow:var(--glow-teal); border-radius:100px;"></div>
+              </div>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Clinical Workflows, EMR Systems, Patient Portals</p>
+            </div>
+
+            <div class="chart-row" style="margin-bottom:var(--space-4);">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:var(--space-1); font-family:var(--font-mono);">
+                <span style="color:var(--text-primary);">Frontend Engineering (React.js)</span>
+                <span style="color:var(--neon-primary);">85%</span>
+              </div>
+              <div style="width:100%; height:8px; background:var(--bg-deep); border-radius:100px; overflow:hidden; border:1px solid var(--border-void);">
+                <div style="width:85%; height:100%; background:linear-gradient(90deg, var(--neon-dark), var(--neon-primary)); box-shadow:var(--glow-teal); border-radius:100px;"></div>
+              </div>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">TypeScript, Tailwind CSS, Web3 integrations</p>
+            </div>
+
+            <div class="chart-row" style="margin-bottom:var(--space-4);">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:var(--space-1); font-family:var(--font-mono);">
+                <span style="color:var(--text-primary);">Backend & API Architecture</span>
+                <span style="color:var(--neon-primary);">80%</span>
+              </div>
+              <div style="width:100%; height:8px; background:var(--bg-deep); border-radius:100px; overflow:hidden; border:1px solid var(--border-void);">
+                <div style="width:80%; height:100%; background:linear-gradient(90deg, var(--neon-dark), var(--neon-primary)); box-shadow:var(--glow-teal); border-radius:100px;"></div>
+              </div>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">Node.js, Express, MongoDB, Firebase</p>
+            </div>
+
+            <div class="chart-row">
+              <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:var(--space-1); font-family:var(--font-mono);">
+                <span style="color:var(--text-primary);">AI Integration & Prompt Eng.</span>
+                <span style="color:var(--neon-primary);">88%</span>
+              </div>
+              <div style="width:100%; height:8px; background:var(--bg-deep); border-radius:100px; overflow:hidden; border:1px solid var(--border-void);">
+                <div style="width:88%; height:100%; background:linear-gradient(90deg, var(--neon-dark), var(--neon-primary)); box-shadow:var(--glow-teal); border-radius:100px;"></div>
+              </div>
+              <p style="font-size:10px; color:var(--text-muted); margin-top:4px;">LLM Integration, Botpress, OpenAI API, Make/n8n</p>
             </div>
           </div>
-          <div class="skill-category">
-            <h3>Domain Expertise</h3>
-            <div class="skill-chips">
-              <span class="chip" style="border-color:var(--neon-primary)">Health-Tech Workflow</span>
-              <span class="chip">SaaS Lifecycle</span>
-              <span class="chip">Clinic Digitization</span>
-              <span class="chip">EMR Systems</span>
-            </div>
-          </div>
-          <div class="skill-category">
-            <h3>Technical Fluency</h3>
-            <div class="skill-chips">
-              <span class="chip">JavaScript / React.js</span>
-              <span class="chip">Node.js / APIs</span>
-              <span class="chip">Database Architecture</span>
-              <span class="chip">Git / CI/CD</span>
-              <span class="chip">Prompt Engineering</span>
+          
+          <!-- Stack Visualizer -->
+          <div class="stack-visualizer" style="display:flex; flex-direction:column; gap:var(--space-4);">
+            <h3 style="color:var(--text-bright); margin-bottom:var(--space-2); font-size:var(--text-xl);">Stack Integration Nodes</h3>
+            <div style="padding:var(--space-4); background:var(--bg-glass); border:1px solid var(--border-accent); border-radius:var(--radius-lg); backdrop-filter:blur(24px); position:relative;">
+              <div style="position:absolute; width:1px; height:100%; background:var(--border-strong); left:24px; top:0; opacity:0.3;"></div>
+              
+              <div style="display:flex; align-items:center; gap:var(--space-4); margin-bottom:var(--space-4); position:relative; z-index:2;">
+                <div style="width:16px; height:16px; background:var(--bg-void); border:2px solid var(--neon-primary); border-radius:50%; box-shadow:var(--glow-primary);"></div>
+                <div>
+                  <strong style="color:var(--neon-primary); font-family:var(--font-mono); font-size:12px;">LAYER 01: STRATEGY</strong>
+                  <p style="font-size:13px; color:var(--text-secondary); margin-top:2px;">Jira, Miro, Sprint Planning, Client Requirements mapping</p>
+                </div>
+              </div>
+              
+              <div style="display:flex; align-items:center; gap:var(--space-4); margin-bottom:var(--space-4); position:relative; z-index:2;">
+                <div style="width:16px; height:16px; background:var(--bg-void); border:2px solid var(--neon-cyan); border-radius:50%; box-shadow:var(--glow-cyan);"></div>
+                <div>
+                  <strong style="color:var(--neon-cyan); font-family:var(--font-mono); font-size:12px;">LAYER 02: DEVELOPMENT</strong>
+                  <p style="font-size:13px; color:var(--text-secondary); margin-top:2px;">React.js, Node.js, GitHub, Vercel CI/CD pipelines</p>
+                </div>
+              </div>
+              
+              <div style="display:flex; align-items:center; gap:var(--space-4); margin-bottom:var(--space-4); position:relative; z-index:2;">
+                <div style="width:16px; height:16px; background:var(--bg-void); border:2px solid var(--neon-teal); border-radius:50%; box-shadow:var(--glow-teal);"></div>
+                <div>
+                  <strong style="color:var(--neon-teal); font-family:var(--font-mono); font-size:12px;">LAYER 03: AUTOMATION</strong>
+                  <p style="font-size:13px; color:var(--text-secondary); margin-top:2px;">OpenAI APIs, Botpress, n8n webhook orchestration</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 13. Industries -->
+
+    <!-- 13. HealthTech Focus -->
     <section id="industries" class="section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Industries I Serve</h2>
-          <p>Specialized in Health-Tech. Proficient across every vertical.</p>
+      <div class="container grid-sidebar-layout" style="align-items:center;">
+        <div>
+          <div class="section-header" style="text-align:left;">
+            <h2>Built for Indian Healthcare</h2>
+            <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-1);">HealthTech Focus</p>
+          </div>
+          <p style="color:var(--text-secondary); font-size:var(--text-lg); line-height:var(--leading-relaxed); margin-bottom:var(--space-6);">
+            India has 600,000+ registered doctors. Fewer than 10% use clinical management software. The problem is not technology availability — it is software that understands clinical reality.
+          </p>
+          <p style="color:var(--text-secondary); font-size:var(--text-base); line-height:var(--leading-relaxed); margin-bottom:var(--space-6);">
+            I build HealthTech products that fit the 3-minute patient gap — not the 3-hour developer assumption. If you are a doctor, clinic owner, or health-tech founder in Jaipur or Ahmedabad, let's talk.
+          </p>
+          
+          <div style="margin-top:var(--space-8);">
+            <a href="#contact" class="btn btn-sharp btn-primary btn-sharp magnetic">Talk to Me About HealthTech</a>
+          </div>
         </div>
-        <div class="industries-grid">
-          <div class="industry-card featured tilt-card">
-            <svg width="40" height="40" aria-hidden="true"><use href="#ico-heartbeat"/></svg>
-            <h3>Healthcare & Clinics</h3>
-            <p>From single-physician clinics to multi-specialty hospitals — I translate clinical workflows into working software without the usual tech chaos.</p>
+
+        <!-- OPD / TokenQ Simulator Widget -->
+        <div>
+          <div class="queue-simulator tilt-card geom-card" style="padding:var(--space-6); background:var(--bg-card); border:1px solid var(--border-accent); border-radius:var(--radius-lg); box-shadow:var(--glow-teal);">
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-subtle); padding-bottom:var(--space-3); margin-bottom:var(--space-4);">
+              <h4 style="margin:0; color:var(--text-bright); font-family:var(--font-mono); font-size:var(--text-sm);">TokenQ™ OPD Dashboard</h4>
+              <span style="background:rgba(0, 232, 168, 0.15); color:var(--neon-primary); font-size:0.65rem; font-weight:bold; padding:2px 6px; border-radius:100px; font-family:var(--font-mono);">LIVE DEMO</span>
+            </div>
+            
+            <div class="sim-display grid-2-cols" style="text-align:center; margin-bottom:var(--space-6);">
+              <div style="padding:var(--space-4); background:rgba(0,0,0,0.3); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                <span style="display:block; font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:var(--space-1);">Active Token</span>
+                <span id="sim-active-token" style="font-size:3rem; font-weight:800; color:var(--neon-primary); font-family:var(--font-display); line-height:1;">14</span>
+              </div>
+              <div style="padding:var(--space-4); background:rgba(0,0,0,0.3); border-radius:var(--radius-md); border:1px solid var(--border-subtle);">
+                <span style="display:block; font-size:10px; color:var(--text-muted); text-transform:uppercase; margin-bottom:var(--space-1);">Wait Queue</span>
+                <span id="sim-queue-size" style="font-size:3rem; font-weight:800; color:var(--text-bright); font-family:var(--font-display); line-height:1;">3<span style="font-size:1.2rem; font-weight:500; color:var(--text-muted);"> patients</span></span>
+              </div>
+            </div>
+            
+            <div style="display:flex; gap:var(--space-3); margin-bottom:var(--space-4);">
+              <button id="btn-sim-next" class="btn btn-sharp btn-primary btn-sharp btn-sm magnetic" style="flex:1; font-size:11px; padding:8px 12px;">Call Next</button>
+              <button id="btn-sim-add" class="btn btn-sharp btn-ghost btn-sm magnetic" style="flex:1; font-size:11px; padding:8px 12px;">Add Patient</button>
+            </div>
+            
+            <div class="sim-feed" id="sim-feed" style="background:rgba(0,0,0,0.4); border-radius:var(--radius-md); padding:var(--space-3); font-family:var(--font-mono); font-size:11px; text-align:left; height:90px; overflow-y:auto; border:1px solid var(--border-subtle); line-height:1.5;">
+              <div style="color:var(--text-muted);">> System initialized. Initial queue size: 3.</div>
+              <div style="color:var(--neon-primary);">> Current token: 14 called to OPD Room 1.</div>
+            </div>
           </div>
-          <div class="industry-card featured tilt-card">
-            <svg width="40" height="40" aria-hidden="true"><use href="#ico-rocket"/></svg>
-            <h3>Health-Tech Startups</h3>
-            <p>MVP scoping, rapid iteration cycles, and regulatory-aware product delivery.</p>
+        </div>
+      </div>
+      
+      <!-- HealthTech Stats & Products Grid -->
+      <div class="container" style="margin-top:var(--space-10);">
+        <!-- Stats Row -->
+        <div class="grid-4-cols" style="margin-bottom:var(--space-8);">
+          <div class="stat-card tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); text-align:center;">
+            <div style="font-size:var(--text-2xl); font-weight:800; color:var(--neon-primary);">600K+</div>
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">Doctors in India</div>
           </div>
-          <div class="industry-card tilt-card">
-            <svg width="32" height="32" aria-hidden="true"><use href="#ico-cloud"/></svg>
-            <h3>SaaS & Software Products</h3>
-            <p>Managing multi-tenant architectures and subscription billing rollouts.</p>
+          <div class="stat-card tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); text-align:center;">
+            <div style="font-size:var(--text-2xl); font-weight:800; color:var(--neon-primary);">&lt;10%</div>
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">Digital Adoption</div>
           </div>
-          <div class="industry-card tilt-card">
-            <svg width="32" height="32" aria-hidden="true"><use href="#ico-shopping-cart"/></svg>
-            <h3>E-Commerce & D2C</h3>
-            <p>Optimizing conversion funnels and integrating complex payment gateways.</p>
+          <div class="stat-card tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); text-align:center;">
+            <div style="font-size:var(--text-2xl); font-weight:800; color:var(--neon-primary);">₹0</div>
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">Monthly Fee (One-Time)</div>
+          </div>
+          <div class="stat-card tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg); text-align:center;">
+            <div style="font-size:var(--text-2xl); font-weight:800; color:var(--neon-primary);">48hr</div>
+            <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; margin-top:2px;">Setup Time</div>
+          </div>
+        </div>
+        
+        <!-- Products Sub-Grid -->
+        <div class="grid-5-cols">
+          <div class="tilt-card geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); border-radius:var(--radius-md); text-align:center;">
+            <h4 style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;">TokenQ</h4>
+            <p style="color:var(--text-muted); font-size:11px; margin:0;">OPD Queue System</p>
+          </div>
+          <div class="tilt-card geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); border-radius:var(--radius-md); text-align:center;">
+            <h4 style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;">RxPad Pro</h4>
+            <p style="color:var(--text-muted); font-size:11px; margin:0;">Digital Prescription</p>
+          </div>
+          <div class="tilt-card geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); border-radius:var(--radius-md); text-align:center;">
+            <h4 style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;">LabTrack Pro</h4>
+            <p style="color:var(--text-muted); font-size:11px; margin:0;">Lab Management</p>
+          </div>
+          <div class="tilt-card geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); border-radius:var(--radius-md); text-align:center;">
+            <h4 style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;">RecallMD</h4>
+            <p style="color:var(--text-muted); font-size:11px; margin:0;">Patient Follow-Up</p>
+          </div>
+          <div class="tilt-card geom-card" style="padding:var(--space-4); border:1px solid var(--border-subtle); border-radius:var(--radius-md); text-align:center;">
+            <h4 style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;">CareReview</h4>
+            <p style="color:var(--text-muted); font-size:11px; margin:0;">Reputation Management</p>
           </div>
         </div>
       </div>
@@ -536,34 +1191,110 @@
     <section id="process" class="section">
       <div class="container">
         <div class="section-header">
-          <h2>How Every Engagement Runs</h2>
-          <p>No ambiguity. No surprises. Delivery by design.</p>
+          <h2>How It Works</h2>
+          <p class="section-tagline" style="color:var(--text-secondary); margin-top:var(--space-1);">From First Call to Launch — No ambiguity. No surprises.</p>
         </div>
         <div class="process-steps">
           <div class="process-step">
-            <div class="step-icon"><svg width="24" height="24"><use href="#ico-magnifying-glass"/></svg></div>
-            <h4>1. DISCOVER</h4>
-            <p>Requirements gathering — in writing, not verbal. Stakeholder alignment before a single line of code.</p>
+            <div class="step-icon" style="font-family:var(--font-mono); font-weight:bold; font-size:var(--text-lg); display:flex; align-items:center; justify-content:center; color:var(--neon-primary);">01</div>
+            <h4>Discovery Call</h4>
+            <p>Free 30-min strategy call. We scope your project, identify pain points, and define success metrics — no pitch, just clarity.</p>
           </div>
           <div class="process-step">
-            <div class="step-icon"><svg width="24" height="24"><use href="#ico-blueprint"/></svg></div>
-            <h4>2. SCOPE</h4>
-            <p>Feature specs, acceptance criteria, tech stack confirmation. Milestone schedule and payment structure agreed upfront.</p>
+            <div class="step-icon" style="font-family:var(--font-mono); font-weight:bold; font-size:var(--text-lg); display:flex; align-items:center; justify-content:center; color:var(--neon-primary);">02</div>
+            <h4>Requirement Mapping</h4>
+            <p>Written requirements doc. Tech stack confirmation. Access credentials. Communication channel. Milestone schedule. All locked before sprint 1.</p>
           </div>
           <div class="process-step">
-            <div class="step-icon"><svg width="24" height="24"><use href="#ico-lightning"/></svg></div>
-            <h4>3. EXECUTE</h4>
-            <p>Sprint-based delivery with daily status tracking. Blockers resolved before they become delays.</p>
+            <div class="step-icon" style="font-family:var(--font-mono); font-weight:bold; font-size:var(--text-lg); display:flex; align-items:center; justify-content:center; color:var(--neon-primary);">03</div>
+            <h4>Sprint Execution</h4>
+            <p>Agile delivery. Daily standups. Sprint reviews. Blocker resolution. You get progress visibility without micromanaging a developer.</p>
           </div>
           <div class="process-step">
-            <div class="step-icon"><svg width="24" height="24"><use href="#ico-shield-check"/></svg></div>
-            <h4>4. VALIDATE</h4>
-            <p>QA cycles against defined acceptance criteria. UAT with client sign-off before any production push.</p>
+            <div class="step-icon" style="font-family:var(--font-mono); font-weight:bold; font-size:var(--text-lg); display:flex; align-items:center; justify-content:center; color:var(--neon-primary);">04</div>
+            <h4>QA & Release</h4>
+            <p>Multi-device QA. Performance checks. Client acceptance testing. Structured deployment — no "it works on my machine" surprises.</p>
           </div>
           <div class="process-step">
-            <div class="step-icon"><svg width="24" height="24"><use href="#ico-paper-plane-tilt"/></svg></div>
-            <h4>5. DELIVER</h4>
-            <p>Production deployment, handoff documentation, and 30-day post-launch support included.</p>
+            <div class="step-icon" style="font-family:var(--font-mono); font-weight:bold; font-size:var(--text-lg); display:flex; align-items:center; justify-content:center; color:var(--neon-primary);">05</div>
+            <h4>Handoff & Support</h4>
+            <p>Complete documentation. Knowledge transfer. Optional maintenance retainer — ₹2,000–₹8,000/month for ongoing peace of mind.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14.5 ROI Estimator — Interactive -->
+    <section id="roi-estimator" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Project ROI Estimator</h2>
+          <p class="section-tagline" style="color:var(--text-secondary); margin-top:var(--space-1);">Drag the sliders to see how much a Technical PM saves your team.</p>
+        </div>
+
+        <div class="roi-widget geom-card" style="max-width:800px; margin:0 auto; padding:var(--space-8); background:var(--bg-card); border:1px solid var(--border-accent);">
+          <!-- Sliders -->
+          <div class="grid-2-cols" style="margin-bottom:var(--space-8);">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-3);">
+                <label style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Team Size (Developers)</label>
+                <span id="roi-team-val" style="color:var(--neon-primary); font-weight:700; font-family:var(--font-display); font-size:var(--text-lg);">3</span>
+              </div>
+              <input type="range" id="roi-team-size" min="1" max="10" value="3" style="width:100%; accent-color:var(--neon-primary); cursor:pointer; height:6px; -webkit-appearance:none; appearance:none; background:var(--border-subtle); outline:none;">
+              <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-top:4px;"><span>1</span><span>5</span><span>10+</span></div>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:var(--space-3);">
+                <label style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Project Timeline</label>
+                <span id="roi-time-val" style="color:var(--neon-primary); font-weight:700; font-family:var(--font-display); font-size:var(--text-lg);">3 mo</span>
+              </div>
+              <input type="range" id="roi-timeline" min="1" max="12" value="3" style="width:100%; accent-color:var(--neon-primary); cursor:pointer; height:6px; -webkit-appearance:none; appearance:none; background:var(--border-subtle); outline:none;">
+              <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--text-muted); margin-top:4px;"><span>1 mo</span><span>6 mo</span><span>12 mo</span></div>
+            </div>
+          </div>
+
+          <!-- Results Dashboard -->
+          <div class="grid-3-cols" style="text-align:center;">
+            <div style="padding:var(--space-5); background:var(--bg-void); border:1px solid var(--border-subtle); border-radius:var(--radius-md); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:var(--space-3);">Dev Hours Saved</div>
+                <div id="roi-hours" style="font-size:var(--text-3xl); font-weight:800; color:var(--neon-primary); font-family:var(--font-display); line-height:1; text-shadow:var(--glow-teal);">180</div>
+                <div style="font-size:10px; color:var(--text-muted); margin-top:var(--space-2);">hours of wasted meetings & rework</div>
+              </div>
+              <div style="width:100%; height:6px; background:var(--border-subtle); border-radius:3px; overflow:hidden; margin-top:var(--space-4); position:relative;">
+                <div id="roi-bar-hours" style="height:100%; width:0%; background:var(--neon-primary); box-shadow:0 0 10px var(--neon-primary); transition:width 0.4s ease;"></div>
+              </div>
+            </div>
+            <div style="padding:var(--space-5); background:var(--bg-void); border:1px solid var(--border-subtle); border-radius:var(--radius-md); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:var(--space-3);">Risk Reduction</div>
+                <!-- Circular SVG Infographic Gauge -->
+                <div style="position:relative; width:80px; height:80px; margin:0 auto var(--space-2); display:flex; align-items:center; justify-content:center;">
+                  <svg width="80" height="80" viewBox="0 0 80 80" style="transform: rotate(-90deg);">
+                    <circle cx="40" cy="40" r="34" fill="none" stroke="var(--border-subtle)" stroke-width="5"></circle>
+                    <circle id="roi-gauge-circle" cx="40" cy="40" r="34" fill="none" stroke="var(--neon-primary)" stroke-width="5" stroke-dasharray="213.6" stroke-dashoffset="213.6" style="transition:stroke-dashoffset 0.4s ease; stroke-linecap:round; filter:drop-shadow(0 0 4px var(--neon-primary));"></circle>
+                  </svg>
+                  <div style="position:absolute; font-size:var(--text-lg); font-weight:800; color:var(--text-bright); font-family:var(--font-display);"><span id="roi-risk">35</span>%</div>
+                </div>
+                <div style="font-size:10px; color:var(--text-muted); margin-top:var(--space-2);">fewer scope creep & delivery failures</div>
+              </div>
+            </div>
+            <div style="padding:var(--space-5); background:var(--bg-void); border:1px solid var(--border-subtle); border-radius:var(--radius-md); display:flex; flex-direction:column; justify-content:space-between; align-items:center;">
+              <div>
+                <div style="font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:var(--space-3);">Value Saved</div>
+                <div id="roi-value" style="font-size:var(--text-3xl); font-weight:800; color:var(--neon-primary); font-family:var(--font-display); line-height:1; text-shadow:var(--glow-teal);">$9,000</div>
+                <div style="font-size:10px; color:var(--text-muted); margin-top:var(--space-2);">at $50/hr avg developer cost</div>
+              </div>
+              <div style="width:100%; height:6px; background:var(--border-subtle); border-radius:3px; overflow:hidden; margin-top:var(--space-4); position:relative;">
+                <div id="roi-bar-value" style="height:100%; width:0%; background:var(--neon-primary); box-shadow:0 0 10px var(--neon-primary); transition:width 0.4s ease;"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div style="text-align:center; margin-top:var(--space-6);">
+            <p style="color:var(--text-secondary); font-size:var(--text-sm); margin-bottom:var(--space-4);">These are conservative estimates based on industry averages. Actual ROI depends on your team and project complexity.</p>
+            <a href="#contact" class="btn btn-sharp btn-primary btn-sharp magnetic" style="display:inline-block;">Get Your Custom ROI Analysis →</a>
           </div>
         </div>
       </div>
@@ -576,7 +1307,7 @@
           <h2>Client Endorsements</h2>
         </div>
         <div class="testimonials-grid" id="testimonials-container">
-          <div class="testimonial-card tilt-card">
+          <div class="testimonial-card tilt-card geom-card">
             <div class="stars">★★★★★</div>
             <p class="quote">"Aaryan understood our clinic workflow before recommending any technology. He didn't just manage a project — he translated clinical reality into a product the staff actually uses every day."</p>
             <div class="author">
@@ -587,7 +1318,7 @@
               </div>
             </div>
           </div>
-          <div class="testimonial-card tilt-card">
+          <div class="testimonial-card tilt-card geom-card">
             <div class="stars">★★★★★</div>
             <p class="quote">"Most PMs can't challenge engineering decisions. Aaryan flagged a critical API integration risk before it hit production — saving us three weeks and a painful rollback."</p>
             <div class="author">
@@ -598,7 +1329,7 @@
               </div>
             </div>
           </div>
-          <div class="testimonial-card tilt-card">
+          <div class="testimonial-card tilt-card geom-card">
             <div class="stars">★★★★★</div>
             <p class="quote">"Cross-timezone delivery with zero confusion. Clear sprint goals, release checklists, aligned stakeholders every step. This is what serious project management looks like."</p>
             <div class="author">
@@ -621,31 +1352,359 @@
         </div>
         <div class="faq-accordion" id="faq-container">
           <div class="faq-item active">
-            <button class="faq-question">Who is Aaryan Gupta?</button>
-            <div class="faq-answer" style="max-height: 200px;"><div class="faq-answer-inner">Aaryan Gupta is a Technical Project Manager based in Jaipur, India, specializing in health-tech digital transformation and SaaS project coordination. MCA graduate (AKTU) with a software engineering background, managing 20+ projects across 70+ global markets.</div></div>
+            <button class="faq-question">What does a Technical Project Manager actually do?</button>
+            <div class="faq-answer" style="max-height: 200px;"><div class="faq-answer-inner">A Technical PM goes beyond traditional timeline tracking. I coordinate developer tasks, review pull requests, check API integrations, and ensure the engineering stack aligns with business objectives. This keeps projects on track and prevents developers from building the wrong things.</div></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">What does a Technical Project Manager do?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">A Technical PM owns the full project lifecycle — from requirement scoping through deployment and release governance. Unlike traditional PMs, a technical PM understands codebases, challenges engineering estimates, identifies technical debt, and prevents costly misunderstandings before they happen.</div></div>
+            <button class="faq-question">Can you help doctors and clinics in Jaipur or Ahmedabad?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes! I specialize in clinic workflow automation, EMR setup, patient scheduling systems, and WhatsApp automation for local clinics in Jaipur, Ahmedabad, and surrounding areas. I focus on software that matches clinical workflows without forcing doctors to do data entry.</div></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">Does Aaryan Gupta work with doctors and clinics?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">Yes — health-tech is a primary specialization. Aaryan helps doctors, clinic owners, and hospital administrators digitize clinical workflows, build patient management systems, and coordinate healthcare app development without technical chaos.</div></div>
+            <button class="faq-question">What does your micro-SaaS software cost?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">My micro-SaaS templates (TokenQ, RxPad Pro, LabTrack Pro) are sold on a one-time purchase, self-hosted model. This means you buy the license once, we set it up on your own server, and you have ₹0 monthly subscription fees. Pricing starts at ₹4,000 one-time.</div></div>
           </div>
           <div class="faq-item">
-            <button class="faq-question">What makes a developer-background PM different?</button>
-            <div class="faq-answer"><div class="faq-answer-inner">A PM who can read code challenges developer estimates, spots scope creep, understands technical debt, and earns the engineering team's respect. This changes every project conversation — fewer surprises, faster decisions, better outcomes.</div></div>
+            <button class="faq-question">Are you available for remote or international projects?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes, I currently manage concurrent client products across 70+ international markets (India, USA, UK, UAE, Europe, and SE Asia). My workflow is timezone-proof, using async-first communication to keep stakeholders updated.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What happens in the free 30-minute call?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">We will discuss your current project scope, map out the bottlenecks or requirements, and define success metrics. No sales pitch—just clear, actionable engineering feedback on whether I can help you ship.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">Do you offer ongoing maintenance after delivery?</button>
+            <div class="faq-answer"><div class="faq-answer-inner">Yes, I provide monthly maintenance retainers ranging from ₹2,000 to ₹8,000/month. This covers security updates, uptime monitoring, minor bug fixes, and performance optimization to give you complete peace of mind.</div></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 17. CTA -->
-    <section id="cta" class="section cta-section">
-      <div class="container cta-container">
-        <h2>Ready to ship without the chaos?</h2>
-        <p>Book a free 30-minute consultation to scope your needs.</p>
-        <a href="#contact" class="btn btn-primary btn-lg magnetic">Get in Touch</a>
+    <!-- 17.1 Tools & Technologies -->
+    <!-- 17.1 Tools & Technologies -->
+    <section id="tools" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Tools & Technologies</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">Daily Stack & Operations</p>
+        </div>
+        
+        <!-- Interactive Stack Filter -->
+        <div class="stack-filter" style="display:flex; flex-wrap:wrap; gap:var(--space-3); justify-content:center; margin-bottom:var(--space-6); margin-top:var(--space-6);">
+          <button class="stack-filter-btn active" data-filter="all" style="padding:8px 20px; background:transparent; border:1px solid var(--neon-primary); color:var(--text-bright); font-family:var(--font-mono); font-size:12px; cursor:pointer; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s ease;">All Tools</button>
+          <button class="stack-filter-btn" data-filter="web-app" style="padding:8px 20px; background:transparent; border:1px solid var(--border-subtle); color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; cursor:pointer; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s ease;">Web App</button>
+          <button class="stack-filter-btn" data-filter="ai-bot" style="padding:8px 20px; background:transparent; border:1px solid var(--border-subtle); color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; cursor:pointer; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s ease;">AI Bot</button>
+          <button class="stack-filter-btn" data-filter="healthtech" style="padding:8px 20px; background:transparent; border:1px solid var(--border-subtle); color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; cursor:pointer; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s ease;">HealthTech</button>
+          <button class="stack-filter-btn" data-filter="saas" style="padding:8px 20px; background:transparent; border:1px solid var(--border-subtle); color:var(--text-secondary); font-family:var(--font-mono); font-size:12px; cursor:pointer; text-transform:uppercase; letter-spacing:1px; transition:all 0.3s ease;">SaaS Platform</button>
+        </div>
+
+        <!-- Result Text -->
+        <div style="text-align:center; margin-bottom:var(--space-6);">
+          <p id="stack-result-text" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); transition:opacity 0.3s ease;">Viewing all tools across my full operational stack.</p>
+        </div>
+
+        <div class="tools-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--space-6);">
+          <div class="tool-category tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);">
+            <h4 style="color:var(--text-bright); margin-bottom:var(--space-3); font-size:var(--text-sm);">Project Management</h4>
+            <div class="tool-items">
+              <span class="tool-badge">Jira</span>
+              <span class="tool-badge">Notion</span>
+              <span class="tool-badge">Trello</span>
+              <span class="tool-badge">Miro</span>
+              <span class="tool-badge">Slack</span>
+              <span class="tool-badge">ClickUp</span>
+            </div>
+          </div>
+          <div class="tool-category tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);">
+            <h4 style="color:var(--text-bright); margin-bottom:var(--space-3); font-size:var(--text-sm);">Development</h4>
+            <div class="tool-items">
+              <span class="tool-badge">VS Code</span>
+              <span class="tool-badge">GitHub</span>
+              <span class="tool-badge">Vercel</span>
+              <span class="tool-badge">Firebase</span>
+              <span class="tool-badge">Docker</span>
+              <span class="tool-badge">Postman</span>
+            </div>
+          </div>
+          <div class="tool-category tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);">
+            <h4 style="color:var(--text-bright); margin-bottom:var(--space-3); font-size:var(--text-sm);">AI & Automation</h4>
+            <div class="tool-items">
+              <span class="tool-badge">OpenAI</span>
+              <span class="tool-badge">Claude API</span>
+              <span class="tool-badge">Botpress</span>
+              <span class="tool-badge">n8n</span>
+              <span class="tool-badge">Zapier</span>
+              <span class="tool-badge">Make</span>
+            </div>
+          </div>
+          <div class="tool-category tilt-card geom-card" style="padding:var(--space-4); background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:var(--radius-lg);">
+            <h4 style="color:var(--text-bright); margin-bottom:var(--space-3); font-size:var(--text-sm);">Design & Analytics</h4>
+            <div class="tool-items">
+              <span class="tool-badge">Figma</span>
+              <span class="tool-badge">Canva</span>
+              <span class="tool-badge">Adobe XD</span>
+              <span class="tool-badge">GA4</span>
+              <span class="tool-badge">Search Console</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17.2 Achievements & Milestones -->
+    <!-- 17.2 Achievements & Milestones -->
+    <section id="achievements" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Achievements & Milestones</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">Impact By The Numbers</p>
+        </div>
+        
+        <div class="achievements-grid grid-4-cols" id="achievements-grid-container" style="margin-top:var(--space-6);">
+          <!-- 1. Markets Served -->
+          <div class="achievement-card tilt-card geom-card" style="padding:var(--space-6); background:var(--bg-card); border:1px solid var(--border-subtle); position:relative; overflow:hidden;">
+            <div class="card-accent" style="height:3px; background:var(--neon-primary); margin-bottom:var(--space-4);"></div>
+            <i class="ph ph-globe ph-primary" style="font-size:24px; float: right;"></i>
+            <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">[ METRIC // 01 ]</span>
+            <h3 style="color:var(--neon-primary); font-size:var(--text-3xl); font-family:var(--font-display); margin-bottom:var(--space-2); line-height:1;">70+</h3>
+            <p style="color:var(--text-bright); font-weight:600; margin-bottom:var(--space-1); font-size:14px;">Markets Managed</p>
+            <p style="color:var(--text-secondary); font-size:var(--text-sm); line-height:1.4; margin:0;">Client deliveries across India, UAE, UK, USA, Europe, and SE Asia.</p>
+          </div>
+
+          <!-- 2. UiBrium NPM -->
+          <div class="achievement-card tilt-card geom-card" style="padding:var(--space-6); background:var(--bg-card); border:1px solid var(--border-subtle); position:relative; overflow:hidden;">
+            <div class="card-accent" style="height:3px; background:var(--neon-cyan); margin-bottom:var(--space-4);"></div>
+            <i class="ph ph-package ph-cyan" style="font-size:24px; float: right;"></i>
+            <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">[ SYSTEM // 02 ]</span>
+            <h3 style="color:var(--neon-cyan); font-size:var(--text-3xl); font-family:var(--font-display); margin-bottom:var(--space-2); line-height:1;">UiBrium</h3>
+            <p style="color:var(--text-bright); font-weight:600; margin-bottom:var(--space-1); font-size:14px;">NPM Library Published</p>
+            <p style="color:var(--text-secondary); font-size:var(--text-sm); line-height:1.4; margin:0;">Published component primitives and accessible design patterns on NPM registry.</p>
+          </div>
+
+          <!-- 3. IBM Certification -->
+          <div class="achievement-card tilt-card geom-card" style="padding:var(--space-6); background:var(--bg-card); border:1px solid var(--border-subtle); position:relative; overflow:hidden;">
+            <div class="card-accent" style="height:3px; background:var(--neon-teal); margin-bottom:var(--space-4);"></div>
+            <i class="ph ph-certificate ph-teal" style="font-size:24px; float: right;"></i>
+            <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">[ CRED // 03 ]</span>
+            <h3 style="color:var(--neon-teal); font-size:var(--text-3xl); font-family:var(--font-display); margin-bottom:var(--space-2); line-height:1;">IBM</h3>
+            <p style="color:var(--text-bright); font-weight:600; margin-bottom:var(--space-1); font-size:14px;">Certified Developer</p>
+            <p style="color:var(--text-secondary); font-size:var(--text-sm); line-height:1.4; margin:0;">Completed rigorous virtual internship and certification from IBM.</p>
+          </div>
+
+          <!-- 4. Web3 Lead -->
+          <div class="achievement-card tilt-card geom-card" style="padding:var(--space-6); background:var(--bg-card); border:1px solid var(--border-subtle); position:relative; overflow:hidden;">
+            <div class="card-accent" style="height:3px; background:var(--neon-blue); margin-bottom:var(--space-4);"></div>
+            <i class="ph ph-link-simple ph-blue" style="font-size:24px; float: right;"></i>
+            <span style="font-family:var(--font-mono); font-size:10px; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:4px;">[ SPRINT // 04 ]</span>
+            <h3 style="color:var(--neon-blue); font-size:var(--text-3xl); font-family:var(--font-display); margin-bottom:var(--space-2); line-height:1;">11 Mo</h3>
+            <p style="color:var(--text-bright); font-weight:600; margin-bottom:var(--space-1); font-size:14px;">Web3 Delivery Lead</p>
+            <p style="color:var(--text-secondary); font-size:var(--text-sm); line-height:1.4; margin:0;">Led Web3 frontend delivery at MyDigiShell, integrating blockchain wallets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17.3 Availability & Working Model -->
+    <section id="availability" class="section">
+      <div class="container">
+        <div class="availability-card" style="background:var(--bg-card); border:1px solid var(--border-accent); padding:var(--space-8); display:flex; flex-direction:column; align-items:center; text-align:center; box-shadow:var(--glow-teal);">
+          <div style="display:inline-flex; align-items:center; gap:var(--space-2); background:rgba(0, 232, 168, 0.1); border:1px solid var(--neon-primary); padding:var(--space-2) var(--space-4); border-radius:100px; margin-bottom:var(--space-4);">
+            <span class="pulse-dot"></span>
+            <span style="color:var(--neon-primary); font-weight:600; font-size:var(--text-sm);">Available for Projects & Roles</span>
+          </div>
+          <h2 style="margin-bottom:var(--space-6);">How We Can Work Together</h2>
+          
+          <div class="grid-auto-fit" style="width:100%; text-align:left;">
+            <div>
+              <h4 style="color:var(--text-muted); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:1px; margin-bottom:var(--space-2);">Working Model</h4>
+              <p style="color:var(--text-bright); font-weight:500;">Remote-First / Hybrid</p>
+              <p style="color:var(--text-secondary); font-size:var(--text-sm);">Available for On-Site in Jaipur & Ahmedabad.</p>
+            </div>
+            <div>
+              <h4 style="color:var(--text-muted); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:1px; margin-bottom:var(--space-2);">Engagement Types</h4>
+              <ul style="color:var(--text-bright); font-weight:500; list-style:none; padding:0; margin:0; font-size:var(--text-sm);">
+                <li style="margin-bottom:4px; display:flex; align-items:center;"><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Full-time roles</li>
+                <li style="margin-bottom:4px; display:flex; align-items:center;"><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Contract/Freelance</li>
+                <li style="margin-bottom:4px; display:flex; align-items:center;"><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Project-based</li>
+                <li style="display:flex; align-items:center;"><i class="ph ph-check-circle ph-primary" style="font-size:14px; margin-right:6px;"></i> Retainer maintenance</li>
+              </ul>
+            </div>
+            <div>
+              <h4 style="color:var(--text-muted); font-size:var(--text-xs); text-transform:uppercase; letter-spacing:1px; margin-bottom:var(--space-2);">Logistics</h4>
+              <p style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;"><strong>Timezone:</strong> IST (UTC +5:30), flexible for global clients.</p>
+              <p style="color:var(--text-bright); font-size:var(--text-sm); margin-bottom:4px;"><strong>Response Time:</strong> &lt; 24 hours.</p>
+              <p style="color:var(--text-bright); font-size:var(--text-sm);"><strong>Languages:</strong> English (Professional), Hindi (Native).</p>
+            </div>
+          </div>
+          
+          <a href="#contact" class="btn btn-sharp btn-primary btn-sharp magnetic" style="margin-top:var(--space-8);">Discuss Your Project</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17.4 Client Journey Map -->
+    <section id="journey" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Client Journey Map</h2>
+          <p class="section-tagline" style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; margin-top:var(--space-2);">Working Blueprint & Milestones</p>
+        </div>
+        
+        <div class="dash-container" style="margin-top: var(--space-6);">
+          <!-- Horizontal Journey Stepper -->
+          <div class="journey-stepper">
+            <div class="journey-progress-track">
+              <div class="journey-progress-fill"></div>
+            </div>
+            <button class="journey-step-node active" data-target="jn-pane-discovery">
+              <span class="circle"><i class="ph ph-handshake"></i></span>
+              <span>Discovery</span>
+            </button>
+            <button class="journey-step-node" data-target="jn-pane-strategy">
+              <span class="circle"><i class="ph ph-chart-pie-slice"></i></span>
+              <span>Strategy</span>
+            </button>
+            <button class="journey-step-node" data-target="jn-pane-proposal">
+              <span class="circle"><i class="ph ph-file-text"></i></span>
+              <span>Proposal</span>
+            </button>
+            <button class="journey-step-node" data-target="jn-pane-kickoff">
+              <span class="circle"><i class="ph ph-rocket"></i></span>
+              <span>Kickoff</span>
+            </button>
+            <button class="journey-step-node" data-target="jn-pane-launch">
+              <span class="circle"><i class="ph ph-champagne"></i></span>
+              <span>Launch</span>
+            </button>
+          </div>
+
+          <!-- Stepper Content Panel -->
+          <div class="journey-stepper-display">
+            <!-- Discovery Pane -->
+            <div class="journey-stepper-pane active" id="jn-pane-discovery">
+              <div class="grid-sidebar-layout" style="align-items:start;">
+                <div>
+                  <h3 style="color:var(--neon-primary); margin-bottom:var(--space-3); font-family:var(--font-display); font-size:var(--text-xl);">Step 01 // Project Ingestion</h3>
+                  <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                    You reach out via the contact form, WhatsApp, or schedule directly on Calendly. We organize basic details about your project size, budget thresholds, tech stack requirements, and timeline expectations.
+                  </p>
+                </div>
+                <div style="background:var(--bg-void); border:1px solid var(--border-subtle); padding:var(--space-4); border-radius:var(--radius-md);">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-3); color:var(--neon-primary); font-family:var(--font-mono); font-size:11px; text-transform:uppercase;">
+                    <i class="ph ph-timer"></i> Duration: 24 - 48 Hours
+                  </div>
+                  <ul style="list-style:none; padding:0; margin:0; font-size:13px; color:var(--text-primary); display:flex; flex-direction:column; gap:6px;">
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-primary"></i> Initial Requirement Sync</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-primary"></i> High-Level Bottleneck Intake</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-primary"></i> Calendly Call Invitation</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strategy Pane -->
+            <div class="journey-stepper-pane" id="jn-pane-strategy">
+              <div class="grid-sidebar-layout" style="align-items:start;">
+                <div>
+                  <h3 style="color:var(--neon-cyan); margin-bottom:var(--space-3); font-family:var(--font-display); font-size:var(--text-xl);">Step 02 // Deep-Dive Consultation</h3>
+                  <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                    We run a free 30-minute discovery call to map clinical logic, user flows, database architecture requirements, or project barriers. No sales pitch — just straight technical consultation.
+                  </p>
+                </div>
+                <div style="background:var(--bg-void); border:1px solid var(--border-subtle); padding:var(--space-4); border-radius:var(--radius-md);">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-3); color:var(--neon-cyan); font-family:var(--font-mono); font-size:11px; text-transform:uppercase;">
+                    <i class="ph ph-calendar-blank"></i> Session: 30-Min Strategy Call
+                  </div>
+                  <ul style="list-style:none; padding:0; margin:0; font-size:13px; color:var(--text-primary); display:flex; flex-direction:column; gap:6px;">
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-cyan"></i> Clinical Workflow Mapping</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-cyan"></i> Architecture Alignment Check</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-cyan"></i> Milestone Planning Draft</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Proposal Pane -->
+            <div class="journey-stepper-pane" id="jn-pane-proposal">
+              <div class="grid-sidebar-layout" style="align-items:start;">
+                <div>
+                  <h3 style="color:var(--neon-teal); margin-bottom:var(--space-3); font-family:var(--font-display); font-size:var(--text-xl);">Step 03 // Scoped Proposal</h3>
+                  <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                    You receive a detailed written scope of work (SOW) outlining key sprint phases, milestones, tech configurations, and transparent pricing structures with zero hidden surprises.
+                  </p>
+                </div>
+                <div style="background:var(--bg-void); border:1px solid var(--border-subtle); padding:var(--space-4); border-radius:var(--radius-md);">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-3); color:var(--neon-teal); font-family:var(--font-mono); font-size:11px; text-transform:uppercase;">
+                    <i class="ph ph-file-text"></i> Proposal: 24h Turnaround
+                  </div>
+                  <ul style="list-style:none; padding:0; margin:0; font-size:13px; color:var(--text-primary); display:flex; flex-direction:column; gap:6px;">
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-teal"></i> Comprehensive SOW Proposal</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-teal"></i> Tech Stack Recommendation</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-teal"></i> Exact Milestone Pricing</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kickoff Pane -->
+            <div class="journey-stepper-pane" id="jn-pane-kickoff">
+              <div class="grid-sidebar-layout" style="align-items:start;">
+                <div>
+                  <h3 style="color:var(--neon-blue); margin-bottom:var(--space-3); font-family:var(--font-display); font-size:var(--text-xl);">Step 04 // Sprint Execution</h3>
+                  <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                    Sprint 1 initiates within 48 hours of approval. Weekly product demonstrations, active Slack/WhatsApp updates, and complete transparency on board tracking via Jira/Notion.
+                  </p>
+                </div>
+                <div style="background:var(--bg-void); border:1px solid var(--border-subtle); padding:var(--space-4); border-radius:var(--radius-md);">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-3); color:var(--neon-blue); font-family:var(--font-mono); font-size:11px; text-transform:uppercase;">
+                    <i class="ph ph-rocket-launch"></i> Kickoff: Within 48 Hours
+                  </div>
+                  <ul style="list-style:none; padding:0; margin:0; font-size:13px; color:var(--text-primary); display:flex; flex-direction:column; gap:6px;">
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-blue"></i> Sprint 1 Kickoff Session</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-blue"></i> Jira Board Sharing</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-blue"></i> Slack/WhatsApp Sync Setup</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Launch Pane -->
+            <div class="journey-stepper-pane" id="jn-pane-launch">
+              <div class="grid-sidebar-layout" style="align-items:start;">
+                <div>
+                  <h3 style="color:var(--neon-primary); margin-bottom:var(--space-3); font-family:var(--font-display); font-size:var(--text-xl);">Step 05 // Release & Handover</h3>
+                  <p style="color:var(--text-secondary); font-size:14px; line-height:1.6; margin:0;">
+                    Final QA validation, security check, domain routing, and platform deployment (Vercel, App Store, Google Play). Complete knowledge handoff with documentation and training.
+                  </p>
+                </div>
+                <div style="background:var(--bg-void); border:1px solid var(--border-subtle); padding:var(--space-4); border-radius:var(--radius-md);">
+                  <div style="display:flex; align-items:center; gap:8px; margin-bottom:var(--space-3); color:var(--neon-primary); font-family:var(--font-mono); font-size:11px; text-transform:uppercase;">
+                    <i class="ph ph-champagne"></i> Deployment: Production Ready
+                  </div>
+                  <ul style="list-style:none; padding:0; margin:0; font-size:13px; color:var(--text-primary); display:flex; flex-direction:column; gap:6px;">
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-primary"></i> Final QA & Security Audits</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-primary"></i> Vercel/App Store Release</li>
+                    <li style="display:flex; align-items:center; gap:6px;"><i class="ph ph-check-circle ph-primary"></i> Knowledge Handoff & Docs</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 17.5 Social Proof & Trust Signals -->
+    <section id="trust" class="section" style="padding-bottom:var(--space-12);">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:var(--space-6);">
+          <p style="color:var(--text-muted); font-size:var(--text-sm); text-transform:uppercase; letter-spacing:1px; margin-bottom:var(--space-4);">Trusted By & Affiliated With</p>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:var(--space-8); filter:grayscale(100%) opacity(0.6); transition:all 0.3s ease;" class="trust-logos">
+            <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:bold; color:var(--text-bright);">IBM Certified</span>
+            <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:bold; color:var(--text-bright);">nasscom</span>
+            <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:bold; color:var(--text-bright);">GitHub Open Source</span>
+            <span style="font-family:var(--font-display); font-size:1.5rem; font-weight:bold; color:var(--text-bright);">freeCodeCamp</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -653,20 +1712,67 @@
     <section id="contact" class="section">
       <div class="container contact-grid">
         <div class="contact-info">
-          <h2>Contact</h2>
-          <p>Email: <a href="mailto:{{PERSON_EMAIL}}">{{PERSON_EMAIL}}</a></p>
-          <p>Phone: <a href="tel:{{PERSON_PHONE}}">{{PERSON_PHONE}}</a></p>
+          <h2>Get In Touch</h2>
+          <h3 style="font-size:var(--text-xl); color:var(--text-bright); margin-bottom:var(--space-3);">Ready to Ship Something That Works?</h3>
+          <p style="color:var(--text-secondary); line-height:var(--leading-relaxed); margin-bottom:var(--space-6);">
+            Book a free 30-minute strategy call. No sales pitch — just clarity on what you need and whether I can help.
+          </p>
+          
+          <div style="display:flex; flex-direction:column; gap:var(--space-3); margin-bottom:var(--space-6);">
+            <a href="https://calendly.com/aaryanpm/30min" target="_blank" rel="noopener" class="btn btn-primary magnetic" style="text-align:center;">
+              <i class="ph ph-calendar-blank" style="font-size:16px; margin-right:6px;"></i> Book Free 30-Min Call
+            </a>
+            <a href="https://wa.me/916205650368?text=Hi%20Aaryan%2C%20I%27d%20like%20to%20discuss%20a%20project" target="_blank" rel="noopener" class="btn magnetic" style="text-align:center; background:#25D366; border-color:#21C357; color:#FFFFFF; font-weight:700; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);">
+              <i class="ph-fill ph-whatsapp-logo" style="font-size:18px; margin-right:6px;"></i> WhatsApp Me
+            </a>
+            <button id="btn-copy-email" class="btn btn-ghost magnetic" style="text-align:center;">
+              <i class="ph ph-copy" style="font-size:16px; margin-right:6px;"></i> Copy Email Address
+            </button>
+          </div>
+          
+          <div style="font-family:var(--font-mono); font-size:var(--text-sm); color:var(--text-muted); border-top:1px solid var(--border-subtle); padding-top:var(--space-4);">
+            <div>Email: aryanrajk63@gmail.com</div>
+            <div style="margin-top:4px;">Phone: +91 62056 50368</div>
+            <div style="margin-top:4px;">Locations: Jaipur / Ahmedabad / Remote</div>
+          </div>
         </div>
+        
         <form class="contact-form" id="contact-form">
           <input type="text" name="name" placeholder="Your Name" required>
           <input type="email" name="email" placeholder="Your Email" required>
-          <select name="service">
-            <option value="tpm">Technical Project Management</option>
-            <option value="healthtech">Health-Tech Consulting</option>
-            <option value="ai">AI Automation</option>
-            <option value="other">Other</option>
-          </select>
-          <textarea name="message" placeholder="Message" rows="5" required></textarea>
+          <div class="custom-select-wrapper">
+            <select name="service" style="display:none;">
+              <option value="tpm">Technical Project Management</option>
+              <option value="healthtech">Health-Tech Consulting</option>
+              <option value="ai">AI Automation</option>
+              <option value="saas">Micro-SaaS Software</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="custom-select-trigger" tabindex="0">
+              <span class="custom-select-value">
+                <i class="ph ph-kanban" style="margin-right:8px; color:var(--neon-primary);"></i> Technical Project Management
+              </span>
+              <i class="ph ph-caret-down custom-select-arrow"></i>
+            </div>
+            <div class="custom-select-options">
+              <div class="custom-option selected" data-value="tpm">
+                <i class="ph ph-kanban" style="font-size:18px;"></i> Technical Project Management
+              </div>
+              <div class="custom-option" data-value="healthtech">
+                <i class="ph ph-heartbeat" style="font-size:18px;"></i> Health-Tech Consulting
+              </div>
+              <div class="custom-option" data-value="ai">
+                <i class="ph ph-robot" style="font-size:18px;"></i> AI Automation
+              </div>
+              <div class="custom-option" data-value="saas">
+                <i class="ph ph-cloud-check" style="font-size:18px;"></i> Micro-SaaS Software
+              </div>
+              <div class="custom-option" data-value="other">
+                <i class="ph ph-dots-three-circle" style="font-size:18px;"></i> Other
+              </div>
+            </div>
+          </div>
+          <textarea name="message" placeholder="Describe your project, deadlines, and bottlenecks..." rows="5" required></textarea>
           <button type="submit" class="btn btn-primary magnetic">Send Message</button>
         </form>
       </div>
@@ -675,26 +1781,115 @@
   </main>
 
   <!-- 19. Footer -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-col">
-        <h3>{{PERSON_NAME}}</h3>
-        <p>{{PERSON_TITLE}}</p>
+  <footer class="site-footer" style="position:relative; overflow:hidden; border-top:1px solid var(--border-accent); background:var(--bg-deep); padding-top:var(--space-12); padding-bottom:var(--space-6);">
+    
+    <!-- Footer Vector Background Image -->
+    <div class="footer-vector-bg" style="position:absolute; inset:0; z-index:0; pointer-events:none; background-image:url('/assets/images/footer-bg.png'); background-size:cover; background-position:center; background-repeat:no-repeat; opacity:0.08;">
+    </div>
+
+    <!-- Back to Top -->
+    <a href="#hero" aria-label="Back to top" style="position:absolute; top:-24px; left:50%; transform:translateX(-50%); width:48px; height:48px; background:var(--bg-card); border:1px solid var(--border-accent); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--neon-primary); text-decoration:none; transition:transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out); box-shadow:var(--glow-primary); z-index:2;" onmouseover="this.style.transform='translateX(-50%) translateY(-3px)'" onmouseout="this.style.transform='translateX(-50%)'">
+      <svg width="20" height="20" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M208.49,152.49l-72-72a12,12,0,0,0-17,0l-72,72a12,12,0,0,0,17,17L128,106l63.51,63.52a12,12,0,0,0,17-17Z"/></svg>
+    </a>
+
+    <div class="container" style="position:relative; z-index:1;">
+
+      <!-- Footer Top: Brand + Social -->
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:var(--space-6); margin-bottom:var(--space-8); padding-bottom:var(--space-8); border-bottom:1px solid var(--border-subtle);">
+        <div style="max-width:380px;">
+          <a href="/" style="font-family:var(--font-display); font-size:var(--text-3xl); font-weight:800; color:var(--text-bright); text-decoration:none; letter-spacing:-0.02em;">AG.</a>
+          <p style="color:var(--neon-primary); font-family:var(--font-mono); font-size:var(--text-sm); text-transform:uppercase; letter-spacing:0.05em; margin-top:var(--space-1); margin-bottom:var(--space-2);">Technical Project Manager</p>
+          <p style="color:var(--text-muted); font-size:var(--text-sm); line-height:var(--leading-relaxed); margin:0;">Jaipur, India · Remote Worldwide</p>
+        </div>
+        <!-- Social Icons -->
+        <div style="display:flex; gap:var(--space-3); align-items:center; flex-wrap:wrap;">
+          <a href="{{SOCIAL_LINKEDIN}}" target="_blank" rel="noopener" aria-label="LinkedIn" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-secondary); text-decoration:none; transition:all 0.25s var(--ease-out);" onmouseover="this.style.borderColor='var(--neon-primary)';this.style.color='var(--neon-primary)';this.style.boxShadow='var(--glow-primary)'" onmouseout="this.style.borderColor='var(--border-subtle)';this.style.color='var(--text-secondary)';this.style.boxShadow='none'">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,40H32A16,16,0,0,0,16,56V200a16,16,0,0,0,16,16H224a16,16,0,0,0,16-16V56A16,16,0,0,0,224,40ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm-8-80a12,12,0,1,1,12-12A12,12,0,0,1,88,96Zm96,80a8,8,0,0,1-16,0V140c0-11-4-16-10-16s-12,5-12,16v36a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0v4a27.67,27.67,0,0,1,22-6c16,2,26,15,26,32Z"/></svg>
+          </a>
+          <a href="{{SOCIAL_GITHUB}}" target="_blank" rel="noopener" aria-label="GitHub" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-secondary); text-decoration:none; transition:all 0.25s var(--ease-out);" onmouseover="this.style.borderColor='var(--neon-primary)';this.style.color='var(--neon-primary)';this.style.boxShadow='var(--glow-primary)'" onmouseout="this.style.borderColor='var(--border-subtle)';this.style.color='var(--text-secondary)';this.style.boxShadow='none'">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M208.31,75.68A59.78,59.78,0,0,0,202.93,28,8,8,0,0,0,196,24a59.75,59.75,0,0,0-48,24H124A59.75,59.75,0,0,0,76,24a8,8,0,0,0-6.93,4,59.78,59.78,0,0,0-5.38,47.68A58.14,58.14,0,0,0,56,104v8a56.06,56.06,0,0,0,48.44,55.47A39.8,39.8,0,0,0,96,192v8H72a24,24,0,0,1-24-24,40,40,0,0,0-40-40,8,8,0,0,0,0,16,24,24,0,0,1,24,24,40,40,0,0,0,40,40H96v16a8,8,0,0,0,16,0V192a24,24,0,0,1,48,0v40a8,8,0,0,0,16,0V192a39.8,39.8,0,0,0-8.44-24.53A56.06,56.06,0,0,0,216,112v-8A58.14,58.14,0,0,0,208.31,75.68ZM200,112a40,40,0,0,1-40,40H112a40,40,0,0,1-40-40v-8a41.74,41.74,0,0,1,6.9-22.48A8,8,0,0,0,80,73.55a43.82,43.82,0,0,1,.79-33.58,43.86,43.86,0,0,1,32.32,20.06A8,8,0,0,0,119.82,64h32.35a8,8,0,0,0,6.74-3.69,43.86,43.86,0,0,1,32.32-20.06A43.82,43.82,0,0,1,192,73.55a8,8,0,0,0,1.1,7.69A41.76,41.76,0,0,1,200,104Z"/></svg>
+          </a>
+          <a href="{{SOCIAL_TWITTER}}" target="_blank" rel="noopener" aria-label="Twitter / X" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-secondary); text-decoration:none; transition:all 0.25s var(--ease-out);" onmouseover="this.style.borderColor='var(--neon-primary)';this.style.color='var(--neon-primary)';this.style.boxShadow='var(--glow-primary)'" onmouseout="this.style.borderColor='var(--border-subtle)';this.style.color='var(--text-secondary)';this.style.boxShadow='none'">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.37-61.77,68a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,69.75,59.32A4,4,0,0,1,73.14,53.4l0,0A4,4,0,0,1,76.53,55L171.16,203.7A4,4,0,0,1,167.78,209.62Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/aryanony" target="_blank" rel="noopener" aria-label="Instagram" style="width:40px; height:40px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border-subtle); border-radius:var(--radius-md); color:var(--text-secondary); text-decoration:none; transition:all 0.25s var(--ease-out);" onmouseover="this.style.borderColor='var(--neon-primary)';this.style.color='var(--neon-primary)';this.style.boxShadow='var(--glow-primary)'" onmouseout="this.style.borderColor='var(--border-subtle)';this.style.color='var(--text-secondary)';this.style.boxShadow='none'">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Social</h4>
-        <a href="{{SOCIAL_LINKEDIN}}">LinkedIn</a>
-        <a href="{{SOCIAL_GITHUB}}">GitHub</a>
-        <a href="{{SOCIAL_TWITTER}}">Twitter</a>
+
+      <!-- Footer Links Grid -->
+      <div class="grid-4-cols" style="margin-bottom:var(--space-8); padding-bottom:var(--space-8); border-bottom:1px solid var(--border-subtle);">
+        <!-- Column 1: Services -->
+        <div>
+          <h4 style="font-family:var(--font-display); font-size:var(--text-sm); font-weight:700; color:var(--text-bright); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-4);">Services</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:var(--space-2);">
+            <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Technical PM</a></li>
+            <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">HealthTech Consulting</a></li>
+            <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">AI Automation</a></li>
+            <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Micro-SaaS Software</a></li>
+            <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Website Maintenance</a></li>
+            <li><a href="#services" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Dev Team Coordination</a></li>
+          </ul>
+        </div>
+        <!-- Column 2: Resources -->
+        <div>
+          <h4 style="font-family:var(--font-display); font-size:var(--text-sm); font-weight:700; color:var(--text-bright); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-4);">Resources</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:var(--space-2);">
+            <li><a href="#industries" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Products for Doctors</a></li>
+            <li><a href="#industries" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Clinics in Jaipur</a></li>
+            <li><a href="#industries" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Clinics in Ahmedabad</a></li>
+            <li><a href="#faq" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">FAQ</a></li>
+          </ul>
+        </div>
+        <!-- Column 3: Company -->
+        <div>
+          <h4 style="font-family:var(--font-display); font-size:var(--text-sm); font-weight:700; color:var(--text-bright); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-4);">Company</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:var(--space-2);">
+            <li><a href="#about" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">About</a></li>
+            <li><a href="#experience" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Experience</a></li>
+            <li><a href="#skills" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Skills</a></li>
+            <li><a href="/blog" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Blog</a></li>
+            <li><a href="/privacy-policy.html" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Privacy Policy</a></li>
+            <li><a href="/terms.html" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">Terms</a></li>
+          </ul>
+        </div>
+        <!-- Column 4: Get In Touch -->
+        <div>
+          <h4 style="font-family:var(--font-display); font-size:var(--text-sm); font-weight:700; color:var(--text-bright); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-4);">Get In Touch</h4>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:var(--space-3);">
+            <li style="display:flex; align-items:center; gap:var(--space-2);">
+              <i class="ph ph-envelope-simple ph-primary" style="font-size:16px;"></i>
+              <a href="mailto:aryanrajk63@gmail.com" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">aryanrajk63@gmail.com</a>
+            </li>
+            <li style="display:flex; align-items:center; gap:var(--space-2);">
+              <i class="ph ph-whatsapp-logo ph-cyan" style="font-size:16px;"></i>
+              <a href="https://wa.me/916205650368" target="_blank" rel="noopener" style="color:var(--text-muted); text-decoration:none; font-size:var(--text-sm); transition:color 0.2s;" onmouseover="this.style.color='var(--neon-primary)'" onmouseout="this.style.color='var(--text-muted)'">WhatsApp</a>
+            </li>
+            <li style="display:flex; align-items:center; gap:var(--space-2);">
+              <i class="ph ph-map-pin ph-teal" style="font-size:16px;"></i>
+              <span style="color:var(--text-muted); font-size:var(--text-sm);">Jaipur, India</span>
+            </li>
+            <li style="display:flex; align-items:center; gap:var(--space-2);">
+              <i class="ph ph-timer ph-blue" style="font-size:16px;"></i>
+              <span style="color:var(--text-muted); font-size:var(--text-sm);">Response &lt;24h</span>
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn-sharp btn-primary btn-sharp btn-sm magnetic" style="margin-top:var(--space-4); display:inline-flex; width:100%; justify-content:center;">Book a Call</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="/privacy-policy.html">Privacy Policy</a>
-        <a href="/terms.html">Terms</a>
+
+      <!-- Footer Bottom -->
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:var(--space-4);">
+        <div>
+          <p style="color:var(--text-secondary); font-size:var(--text-sm); margin:0; line-height:var(--leading-relaxed);">Built with precision by <span style="color:var(--text-bright); font-weight:600;">{{PERSON_NAME}}</span></p>
+          <p style="color:var(--text-muted); font-size:var(--text-xs); margin:var(--space-1) 0 0 0;">
+            © 2026 All rights reserved · <span style="font-family:var(--font-mono);">v1.2.0</span>
+          </p>
+        </div>
+        <p style="color:var(--text-muted); font-size:var(--text-sm); margin:0; display:flex; align-items:center; gap:4px;">Made with <i class="ph-fill ph-heart" style="color:#ef4444; font-size:14px;"></i> in Jaipur, India</p>
       </div>
-      <div class="footer-col">
-        <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
-      </div>
+
     </div>
   </footer>
 
@@ -710,6 +1905,7 @@
   <script src="/assets/js/typewriter.js" defer></script>
   <script src="/assets/js/counter.js" defer></script>
   <script src="/assets/js/timeline.js" defer></script>
+  <script src="/assets/js/opd-simulator.js" defer></script>
   <script src="/assets/js/faq.js" defer></script>
   <script src="/assets/js/form.js" defer></script>
   <script src="/assets/js/marquee.js" defer></script>
@@ -718,6 +1914,8 @@
   <script src="/assets/js/storage.js" defer></script>
   <script src="/assets/js/cookies.js" defer></script>
   <script src="/assets/js/pwa.js" defer></script>
+  <script src="/assets/js/interactive.js" defer></script>
+  <script src="/assets/js/reveal.js" defer></script>
   <!-- Third-party Animation Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>

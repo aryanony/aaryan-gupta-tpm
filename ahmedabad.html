@@ -2,40 +2,105 @@
 <html lang="{{SITE_LANGUAGE}}">
 <head>
   <meta charset="UTF-8">
-  <title>IT Project Management Services in Ahmedabad | Aaryan Gupta</title>
-  <meta name="description" content="Aaryan Gupta is a top-rated Technical Project Manager in Ahmedabad helping clinics and Health-Tech startups ship software faster.">
+  <title>Technical Project Manager in Ahmedabad | {{SITE_TITLE}}</title>
+  <meta name="description" content="Looking for an experienced IT/SaaS Project Coordinator or HealthTech PM in Ahmedabad? React/Node.js tech fluency, serving clinics and SaaS teams.">
   <link rel="stylesheet" href="/assets/css/dark.css">
   <link rel="stylesheet" href="/assets/css/light.css">
   <link rel="stylesheet" href="/assets/css/main.css">
   <style>{{CRITICAL_CSS}}</style>
+  <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 </head>
-<body>
+<body class="loading">
+  <!-- 2. Loader -->
+  <div id="ldr" class="loader">
+    <!-- Loader content injected by loader.js -->
+  </div>
+
+  <!-- 3. Custom cursor -->
+  <div class="cx" aria-hidden="true"></div>
+  <div class="ci" aria-hidden="true"></div>
+
+  <!-- 4. Sticky Nav -->
   <header class="nav-header">
     <div class="container nav-container">
       <a href="/" class="nav-logo">AG.</a>
       <nav class="nav-links">
-        <a href="/about.html">About</a>
-        <a href="/services.html">Services</a>
-        <a href="/work.html">Work</a>
-        <a href="/blog/">Blog</a>
+        <a href="/#about">About</a>
+        <a href="/#services">Services</a>
+        <a href="/#work">Work</a>
+        <a href="/products.html">Products</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle theme">
+          <svg width="20" height="20" aria-hidden="true"><use href="#ico-moon"/></svg>
+        </button>
+        <a href="/#contact" class="btn btn-primary btn-sm magnetic">Book a Call</a>
+      </div>
     </div>
   </header>
+
   <main class="container section">
-    <h1>IT Project Management Services in Ahmedabad</h1>
-    <p>Empowering clinics and tech startups in GIFT City and across Ahmedabad.</p>
-    <div class="map-placeholder" style="background:#0A2019; padding:2rem; margin-top:2rem; border-radius:12px; border:1px solid rgba(0, 232, 168, 0.22);">
-      <h3>Google Maps LocalBusiness Embed Placeholder</h3>
-      <p>Ahmedabad, Gujarat, India</p>
+    <div class="section-header" style="text-align:left; margin-bottom:var(--space-8);">
+      <h1 style="font-size:var(--text-4xl); margin-bottom:var(--space-2);">Technical Project Management in Ahmedabad</h1>
+      <p class="section-tagline" style="color:var(--text-secondary); font-size:var(--text-lg);">Supporting the SaaS startup ecosystem and medical communities in Ahmedabad. I manage distributed engineering teams and coordinate product delivery with full-stack engineering discipline.</p>
     </div>
-    <div class="cta-section" style="margin-top:2rem;">
-      <a href="/contact.html" class="btn btn-primary magnetic">Book a free 30-min consultation</a>
+
+    <!-- Local Info Block / map placeholder -->
+    <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:var(--space-6); margin-bottom:var(--space-8); align-items:center;">
+      <div>
+        <h3 style="font-size:var(--text-xl); color:var(--text-bright); margin-bottom:var(--space-3);">SaaS Delivery & Healthcare Workflows</h3>
+        <p style="color:var(--text-secondary); line-height:1.6; margin-bottom:var(--space-4);">
+          Ahmedabad is a booming hub for tech startups, diagnostics labs, and hospitals. I help founders manage complex web apps, React frontend lifecycles, and database migrations. I keep engineering teams focused on defined sprint scopes, eliminating expensive delays.
+        </p>
+        <p style="color:var(--text-secondary); line-height:1.6; margin-bottom:var(--space-4);">
+          My process ensures that your business requirements translate into working code, validated through strict QA check-lists, so you can ship to your users without release day surprises.
+        </p>
+      </div>
+      
+      <div class="map-placeholder" style="background:#0A2019; padding:var(--space-6); border:1px solid var(--border-accent); border-radius:var(--radius-lg); text-align:center;">
+        <svg width="40" height="40" style="color:var(--neon-primary); margin-bottom:12px;"><use href="#ico-wrench"/></svg>
+        <h3>Ahmedabad Operations</h3>
+        <p style="font-size:var(--text-xs); color:var(--text-muted); margin-top:4px;">Available for remote & hybrid sprint management for Ahmedabad teams.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="/#contact" class="btn btn-primary btn-lg magnetic">Discuss Your Tech Project</a>
     </div>
   </main>
+
   <footer class="site-footer">
-    <div class="container">
-      <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+    <div class="container footer-grid">
+      <div class="footer-col">
+        <h3>{{PERSON_NAME}}</h3>
+        <p>{{PERSON_TITLE}}</p>
+      </div>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <a href="{{SOCIAL_LINKEDIN}}">LinkedIn</a>
+        <a href="{{SOCIAL_GITHUB}}">GitHub</a>
+        <a href="{{SOCIAL_TWITTER}}">Twitter</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms</a>
+      </div>
+      <div class="footer-col">
+        <p>© 2026 {{PERSON_NAME}}. All rights reserved.</p>
+      </div>
     </div>
   </footer>
+
+  <!-- Scripts -->
+  <script src="/assets/js/config.js" defer></script>
+  <script src="/assets/js/app.js" defer></script>
+  <script src="/assets/js/theme.js" defer></script>
+  <script src="/assets/js/cursor.js" defer></script>
+  <script src="/assets/js/loader.js" defer></script>
+  <script src="/assets/js/scroll.js" defer></script>
+  <script src="/assets/js/animations.js" defer></script>
+  <script src="/assets/js/tilt.js" defer></script>
+  <script src="/assets/js/magnetic.js" defer></script>
 </body>
 </html>

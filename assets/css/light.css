@@ -1,35 +1,44 @@
-/* ─── LIGHT MODE: Glassmorphism ─── */
+/* ─── LIGHT MODE: Liquid Glassmorphism ─── */
 :root[data-theme="light"] {
-  --bg-void:      #E8F7F2;
-  --bg-deep:      #F0FBF8;
+  --bg-void:      #F0F5FA; /* Lighter bluish white */
+  --bg-deep:      #F4F8FA; /* Soft ice-blue white */
   --bg-surface:   #FFFFFF;
-  --bg-card:      rgba(255, 255, 255, 0.85);
-  --bg-card-hi:   rgba(255, 255, 255, 0.95);
-  --bg-glass:     rgba(255, 255, 255, 0.60);
-  --bg-overlay:   rgba(240, 251, 248, 0.92);
+  --bg-card:      rgba(255, 255, 255, 0.70);
+  --bg-card-hi:   rgba(255, 255, 255, 0.90);
+  --bg-glass:     rgba(255, 255, 255, 0.55);
+  --bg-overlay:   rgba(240, 245, 250, 0.95);
 
-  --neon-primary:  #006B52;
-  --neon-teal:     #008C72;
-  --neon-cyan:     #0099A8;
-  --neon-aqua:     #0077A8;
-  --neon-blue:     #0055CC;
-  --neon-dark:     #004A3C;
+  --neon-primary:  #008073; /* Rich Teal primary */
+  --neon-teal:     #00A896; /* Secondary green-teal */
+  --neon-cyan:     #02C39A; /* Secondary light-cyan */
+  --neon-aqua:     #05668D; /* Secondary bluish-aqua */
+  --neon-blue:     #0071E3; /* Secondary blue */
+  --neon-dark:     #004D40;
 
-  --shadow-sm:   0 1px 4px rgba(0, 80, 60, 0.08);
-  --shadow-md:   0 4px 16px rgba(0, 80, 60, 0.12), 0 1px 4px rgba(0, 80, 60, 0.06);
-  --shadow-lg:   0 8px 32px rgba(0, 80, 60, 0.15), 0 2px 8px rgba(0, 80, 60, 0.08);
-  --shadow-xl:   0 16px 48px rgba(0, 80, 60, 0.18), 0 4px 16px rgba(0, 80, 60, 0.1);
-  --shadow-glass: 0 8px 32px rgba(0, 80, 60, 0.12), inset 0 1px 0 rgba(255,255,255,0.6);
+  --shadow-sm:   0 1px 4px rgba(0, 0, 0, 0.03);
+  --shadow-md:   0 4px 16px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.02);
+  --shadow-lg:   0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+  --shadow-xl:   0 16px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255,255,255,0.7);
+  --glow-primary:  0 4px 15px rgba(0, 128, 115, 0.2);
+  --glow-card-hover: 0 10px 40px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255,255,255,0.9);
 
-  --text-bright:   #03100D;
-  --text-primary:  #0A2019;
-  --text-secondary:#1F5A48;
-  --text-muted:    #5A8A7A;
+  --text-bright:   #0E1716; /* Near black with a touch of deep forest */
+  --text-primary:  #182524;
+  --text-secondary:#4E5D5C;
+  --text-muted:    #7E8F8E;
   --text-inverse:  #FFFFFF;
 
-  --border-void:   rgba(0, 107, 82, 0.05);
-  --border-subtle: rgba(0, 107, 82, 0.10);
-  --border-accent: rgba(0, 107, 82, 0.25);
-  --border-strong: rgba(0, 107, 82, 0.55);
-  --border-neon:   rgba(0, 107, 82, 0.80);
+  --border-void:   rgba(0, 128, 115, 0.03);
+  --border-subtle: rgba(0, 128, 115, 0.08);
+  --border-accent: rgba(0, 128, 115, 0.25);
+  --border-strong: rgba(0, 128, 115, 0.5);
+  --border-neon:   rgba(0, 128, 115, 0.8);
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  14px;
+  --radius-xl:  24px;
+
+  --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23008073' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
 }
