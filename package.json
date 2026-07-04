@@ -5,5 +5,9 @@
     "build": "node build.js",
     "start": "npx serve dist",
     "dev": "node build.js && npx serve dist"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.1",
+    "html-minifier-terser": "^7.2.0"
   }
 }
